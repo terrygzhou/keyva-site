@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KEYVA - 更轻快的工业阀门官网 | 方案三：清新极简工程</title>
+<style>
+:root{--green:#059669;--green-soft:#d1fae5;--ink:#111827;--gray:#6b7280;--line:#e5e7eb;--bg:#fafaf9}
+*{margin:0;box-sizing:border-box}
+body{font-family:'Microsoft YaHei','PingFang SC',sans-serif;color:var(--ink);background:var(--bg);line-height:1.75}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+a{text-decoration:none;color:inherit}
+/* 布局：左侧固定锚点 + 主内容 */
+.layout{display:grid;grid-template-columns:220px 1fr;gap:48px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}}
+aside{position:sticky;top:24px;align-self:start;padding-top:96px}
+aside .logo{font-weight:800;font-size:24px;letter-spacing:1px;margin-bottom:6px}
+aside .logo i{font-style:normal;color:var(--green)}
+aside p{color:var(--gray);font-size:12px;margin-bottom:34px}
+aside nav a{display:block;padding:8px 0;font-size:14px;color:var(--gray);border-left:2px solid var(--line);padding-left:14px;margin-left:-16px}
+aside nav a.on{color:var(--ink);border-color:var(--green);font-weight:700}
+@media(max-width:900px){aside nav{display:flex;gap:16px;padding-top:24px}aside nav a{border:none;padding:0}}
+/* 顶部 */
+.main{padding:0 0 60px}
+.tbar{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-bottom:1px solid var(--line)}
+.tbar .q{background:var(--green);color:#fff;padding:9px 22px;border-radius:99px;font-size:14px;font-weight:700}
+/* hero */
+.hero{padding:88px 0 64px}
+.hero .pill{display:inline-block;background:var(--green-soft);color:var(--green);font-size:13px;font-weight:700;padding:5px 14px;border-radius:99px;margin-bottom:18px}
+.hero h1{font-size:52px;line-height:1.25;font-weight:800}
+.hero h1 span{color:var(--green)}
+.hero p{color:var(--gray);max-width:620px;font-size:17px;margin:18px 0 32px}
+.btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{padding:12px 28px;border-radius:99px;font-weight:700;font-size:15px}
+.btn-p{background:var(--ink);color:#fff}.btn-p:hover{background:#000}
+.btn-s{border:1.5px solid var(--ink);color:var(--ink)}.btn-s:hover{background:#f3f4f6}
+/* 指标 */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:44px 0 70px}
+@media(max-width:820px){.kpis{grid-template-columns:1fr 1fr}}
+.kpi{background:#fff;padding:26px 20px;text-align:center}
+.kpi b{font-size:32px;display:block;color:var(--ink)}
+.kpi span{color:var(--gray);font-size:13px}
+/* section */
+section{padding:36px 0 60px}
+h2{font-size:28px;font-weight:800;margin-bottom:6px}
+.sub{color:var(--gray);margin-bottom:32px;font-size:15px}
+/* 产品卡片 极简 */
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:960px){.pgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.pgrid{grid-template-columns:1fr}}
+.p{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px;transition:.2s}
+.p:hover{border-color:var(--green);box-shadow:0 8px 24px rgba(5,150,105,.1);transform:translateY(-2px)}
+.p .code{font-family:Consolas,monospace;font-size:12px;color:var(--green);font-weight:700}
+.p h3{font-size:19px;margin:8px 0 6px}
+.p .t{color:var(--gray);font-size:13px;margin-bottom:14px}
+.p ul{list-style:none;color:var(--gray);font-size:13px}
+.p li{padding:4px 0}
+.p li::before{content:"— ";color:var(--green)}
+/* 客户 & 认证 双列 */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:820px){.split{grid-template-columns:1fr}}
+.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:30px}
+.panel h3{font-size:17px;margin-bottom:16px}
+.clist{display:flex;flex-wrap:wrap;gap:8px}
+.clist span{background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:6px 16px;font-size:13px;color:var(--ink)}
+.cert{display:flex;gap:10px;flex-wrap:wrap}
+.cert span{border:1.5px solid var(--green-soft);background:#f0fdf9;color:var(--green);border-radius:10px;padding:10px 18px;font-weight:700;font-size:14px}
+/* 联系 */
+.contact{background:#fff;border:1px solid var(--line);border-radius:14px;padding:32px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:820px){.contact{grid-template-columns:1fr}}
+.contact h3{font-size:18px;margin-bottom:10px}
+.contact p{color:var(--gray);font-size:14px}
+.contact .ph{color:var(--ink);font-weight:700}
+/* footer */
+footer{border-top:1px solid var(--line);padding:30px 0 60px;color:var(--gray);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="layout">
+    <aside>
+      <div class="logo"><i>◉</i> KEYVA</div>
+      <p>关键阀门 · 核心价值</p>
+      <nav>
+        <a class="on" href="#">首页</a>
+        <a href="#products">产品系列</a>
+        <a href="#tech">技术与质量</a>
+        <a href="#about">关于我们</a>
+        <a href="#contact">联系我们</a>
+      </nav>
+    </aside>
+    <div class="main">
+      <div class="tbar"><span style="font-weight:700">苛刻工况 · 专业阀门解决方案</span><a class="q" href="#contact">在线询价</a></div>
+
+      <div class="hero">
+        <span class="pill">电力 / 石化 / 矿山</span>
+        <h1>为最苛刻的工况<br>提供<span>可靠</span>的阀门答案</h1>
+        <p>KEYVA 专注高端金属密封球阀：从锅炉疏水到矿山矿浆，覆盖 3/4"–12"、最高 4500lb 压力等级，以 TS / ISO 9001 / CE / ASME 认证保障品质。</p>
+        <div class="btns"><a class="btn btn-p" href="#products">浏览产品</a><a class="btn btn-s" href="#about">了解 KEYVA</a></div>
+
+        <div class="kpis">
+          <div class="kpi"><b>7</b><span>产品系列</span></div>
+          <div class="kpi"><b>4500 lb</b><span>最高压力等级</span></div>
+          <div class="kpi"><b>3</b><span>全球 OSSC 布局</span></div>
+          <div class="kpi"><b>4</b><span>国际权威认证</span></div>
+        </div>
+      </div>
+
+      <section id="products">
+        <h2>产品系列</h2>
+        <p class="sub">按工况选择：疏水、动力泄放、隔离、矿浆</p>
+        <div class="pgrid">
+          <div class="p"><span class="code">SB-STD</span><h3>方孔直通疏水球阀</h3><div class="t">3/4"–6" · 600–4500Lb</div><ul><li>锅炉定排·连排 / 汽包排汽</li><li>汽机疏水 / EH 油隔离</li></ul></div>
+          <div class="p"><span class="code">A-STD</span><h3>方孔角式疏水球阀</h3><div class="t">3/4"–4" · 600–4500Lb</div><ul><li>角式连接疏水工况</li><li>隔离角阀场景</li></ul></div>
+          <div class="p"><span class="code">SB-PCV · RB-PCV</span><h3>动力泄放阀</h3><div class="t">2.5"–12" 宽规格覆盖</div><ul><li>锅炉/过热器动力驱动</li><li>工艺蒸汽 PCV 工况</li></ul></div>
+          <div class="p"><span class="code">TB</span><h3>双球阀 · 隔离阀</h3><div class="t">1"–4" · 1500–4500Lb</div><ul><li>双球同步启闭</li><li>高压差易冲刷工况</li></ul></div>
+          <div class="p"><span class="code">RB</span><h3>圆孔球阀 · 耐磨</h3><div class="t">1"–12" · 150–4500Lb</div><ul><li>全金属密封耐磨设计</li><li>矿山矿浆项目经验</li></ul></div>
+          <div class="p"><span class="code">RB-3P</span><h3>三体快关球阀</h3><div class="t">快关设计</div><ul><li>快速启闭隔离</li><li>三体结构 高可靠性</li></ul></div>
+        </div>
+      </section>
+
+      <section id="tech">
+        <h2>技术与质量</h2>
+        <p class="sub">工程细节与资质，构成信任的底层</p>
+        <div class="split">
+          <div class="panel">
+            <h3>核心工艺</h3>
+            <p>一体锻造阀体 · 方孔球体与阀座 · Inconel 718 球座抗热冲击 · 热融合+纳米喷涂内件 · 压力式自密封 · 双阀杆防窜出 · 填料活载抗温变。</p>
+          </div>
+          <div class="panel">
+            <h3>认证资质</h3>
+            <div class="cert"><span>ISO 9001</span><span>CE</span><span>ASME</span><span>TS 特种装备</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <h2>服务客户</h2>
+        <p class="sub">电力与矿业头部集团长期信赖</p>
+        <div class="panel">
+          <div class="clist"><span>中石化</span><span>华能</span><span>国能</span><span>京能</span><span>大唐</span><span>华电</span><span>国电</span><span>华润</span><span>粤电</span><span>金川</span></div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>联系我们</h2>
+        <p class="sub">填写在线询价，工程团队 1 个工作日内响应</p>
+        <div class="contact">
+          <div><h3>咨询渠道</h3>
+            <p><span class="ph">电力咨询：</span>021-50896336</p>
+            <p><span class="ph">石化/矿山：</span>021-50898122</p>
+            <p><span class="ph">邮箱：</span>info@keyva.cn</p>
+          </div>
+          <div><h3>上海总部</h3>
+            <p>上海市松江区申港路 3255 号<br>金地威新智造园 7 栋 1 层</p>
+            <p style="margin-top:16px">纽约 · 伯明翰 · 上海 —— 三大 OSSC 全球布局</p>
+          </div>
+        </div>
+      </section>
+
+      <footer><span>© 2026 KEYVA 保留所有权利 · 沪ICP备2025153087号-1</span><span>关键阀门 · 核心价值</span></footer>
+    </div>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KEYVA 官网重设计 — 三个方案</title>
+<style>
+  :root { --blue:#1E3A8A; --orange:#F97316; }
+  * { margin:0; box-sizing:border-box; }
+  body { font-family:'Microsoft YaHei','PingFang SC',sans-serif; color:#1f2937; }
+  .wrap { max-width:1200px; margin:0 auto; padding:0 24px; }
+  h1 { font-size:32px; }
+  header { background:#0f172a; color:#fff; padding:56px 0 40px; }
+  header .sub { color:#94a3b8; margin-top:8px; }
+  .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; padding:48px 0; }
+  @media (max-width:900px){ .cards{grid-template-columns:1fr;} }
+  a.card { display:block; text-decoration:none; color:inherit; border:1px solid #e2e8f0; border-radius:12px; overflow:hidden; background:#fff; transition:.2s; }
+  a.card:hover { transform:translateY(-4px); box-shadow:0 12px 30px rgba(15,23,42,.12); }
+  .card .thumb { height:150px; display:flex; align-items:flex-end; padding:14px; color:#fff; font-weight:700; font-size:18px; }
+  .card .body { padding:20px; }
+  .card .desc { color:#64748b; font-size:14px; line-height:1.6; margin-top:8px; }
+  .tags { margin-top:14px; display:flex; flex-wrap:wrap; gap:6px; }
+  .tag { font-size:12px; background:#f1f5f9; color:#475569; padding:3px 10px; border-radius:99px; }
+  .t1 { background:linear-gradient(120deg,#0f2a6b,#1E3A8A 55%,#3b82f6); }
+  .t2 { background:linear-gradient(120deg,#0a0a0a,#262626 60%,#F97316); }
+  .t3 { background:linear-gradient(120deg,#064e3b,#10b981 70%,#d1fae5); }
+  footer { color:#94a3b8; font-size:13px; padding:24px 0 48px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>KEYVA（keyva.cn）官网重设计 · 三个方向</h1>
+    <p class="sub">基于现有站点内容：品牌「关键阀门 核心价值」、7 大产品系列（SB-STD / A-STD / SB-PCV·RB-PCV / TB / RB / RB-3P / SB）、认证资质（ISO 9001 / CE / ASME / TS）、发展历程、全球布局（纽约 · 伯明翰 · 上海）。</p>
+  </div>
+</header>
+<div class="wrap">
+  <div class="cards">
+    <a class="card" href="option-1-industrial.html">
+      <div class="thumb t1">01</div>
+      <div class="body">
+        <h2>方案一 · 工业深海军蓝</h2>
+        <p class="desc">深海军蓝 + 橙色点缀的 B2B 工业风：大横幅、产品参数表、认证带、客户logo墙。保留现有品牌色，稳重可信，适合电力/石化客户。</p>
+        <div class="tags"><span class="tag">深蓝 #1E3A8A</span><span class="tag">橙 #F97316</span><span class="tag">B2B 工业风</span><span class="tag">信任感</span></div>
+      </div>
+    </a>
+    <a class="card" href="option-2-dark-tech.html">
+      <div class="thumb t2">02</div>
+      <div class="body">
+        <h2>方案二 · 暗黑精密制造</h2>
+        <p class="desc">近黑底 + 亮橙高光 + 等宽数据字体的「精密制造」观感：巨型产品Hero、技术参数以数据卡呈现，强调 Inconel 718、纳米喷涂等硬核工程细节。</p>
+        <div class="tags"><span class="tag">深黑 #0a0a0a</span><span class="tag">高光橙</span><span class="tag">数据化</span><span class="tag">高端</span></div>
+      </div>
+    </a>
+    <a class="card" href="option-3-clean-light.html">
+      <div class="thumb t3">03</div>
+      <div class="body">
+        <h2>方案三 · 清新极简工程</h2>
+        <p class="desc">白底 + 青绿工程色 + 大面积留白：卡片式产品网格、左侧导航锚点、强调可持续与「绿色电力」叙事，阅读体验最轻快。</p>
+        <div class="tags"><span class="tag">白底</span><span class="tag">工程青绿 #10b981</span><span class="tag">极简</span><span class="tag">轻快</span></div>
+      </div>
+    </a>
+  </div>
+</div>
+<footer><div class="wrap">每个方案为单文件 HTML，可直接浏览器打开预览（图片用占位渐变色块示意）。</div></footer>
+</body>
+</html>

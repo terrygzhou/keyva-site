@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KEYVA - 精密制造 苛刻工况 | 方案二：暗黑精密制造</title>
+<style>
+:root{--bg:#0a0a0a;--panel:#141414;--line:#2a2a2a;--orange:#F97316;--text:#e5e5e5;--dim:#8a8a8a;--mono:'Consolas','Menlo',monospace}
+*{margin:0;box-sizing:border-box}
+body{font-family:'Microsoft YaHei','PingFang SC',sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+a{color:inherit;text-decoration:none}
+.mono{font-family:var(--mono)}
+/* nav */
+header{position:sticky;top:0;background:rgba(10,10,10,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:50}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+.logo{font-size:26px;font-weight:800;letter-spacing:4px}
+.logo span{color:var(--orange)}
+.menu{display:flex;gap:30px;font-size:14px;color:var(--dim)}
+.menu a:hover{color:#fff}
+.menu a.on{color:var(--orange)}
+.badge{font-family:var(--mono);font-size:12px;border:1px solid var(--orange);color:var(--orange);padding:7px 16px}
+@media(max-width:820px){.menu{display:none}}
+/* hero */
+.hero{min-height:640px;display:flex;align-items:center;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(circle at 78% 40%,rgba(249,115,22,.16),transparent 45%),
+  repeating-linear-gradient(0deg,transparent 0 39px,#1c1c1c 39px 40px)}
+.hero .wrap{position:relative}
+.tag{font-family:var(--mono);color:var(--orange);font-size:13px;letter-spacing:2px}
+.hero h1{font-size:64px;font-weight:800;line-height:1.15;margin:16px 0;color:#fff}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero p{max-width:580px;color:var(--dim);font-size:17px;margin-bottom:34px}
+.hero .btns{display:flex;gap:16px}
+.btn{padding:13px 30px;font-size:15px;font-weight:700;border-radius:4px}
+.btn-o{background:var(--orange);color:#000}.btn-o:hover{background:#ea580c}
+.btn-d{border:1px solid var(--line);color:#fff}.btn-d:hover{border-color:#555}
+/* 规格读数 */
+.readout{border-bottom:1px solid var(--line);background:var(--panel)}
+.readout .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.rd{padding:26px 20px;border-right:1px solid var(--line)}
+.rd:last-child{border:none}
+.rd b{font-family:var(--mono);font-size:30px;color:#fff;display:block}
+.rd b i{font-style:normal;color:var(--orange);font-size:16px}
+.rd span{color:var(--dim);font-size:12px;font-family:var(--mono)}
+@media(max-width:820px){.readout .wrap{grid-template-columns:1fr 1fr}}
+/* section */
+section{padding:80px 0;border-bottom:1px solid var(--line)}
+.k{font-family:var(--mono);color:var(--orange);font-size:12px;letter-spacing:3px}
+h2{font-size:34px;color:#fff;margin:8px 0 40px}
+/* 产品 hero 卡 */
+.prow{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+@media(max-width:900px){.prow{grid-template-columns:1fr}}
+.vis{aspect-ratio:1.4;background:radial-gradient(circle at 50% 50%,#1d1d1d,#0d0d0d);border:1px solid var(--line);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:80px;font-weight:800;color:#2e2e2e;font-family:var(--mono);letter-spacing:2px}
+.pinfo .num{font-family:var(--mono);color:var(--orange);font-size:13px}
+.pinfo h3{font-size:30px;color:#fff;margin:8px 0 14px}
+.pinfo ul{list-style:none;color:var(--dim);font-size:14px}
+.pinfo li{padding:7px 0;border-bottom:1px dashed var(--line)}
+.pinfo li b{color:var(--text);font-family:var(--mono);font-size:12px;display:inline-block;min-width:86px}
+/* 特性 2x2 */
+.f4{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:900px){.f4{grid-template-columns:1fr}}
+.f{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:26px;transition:.2s}
+.f:hover{border-color:var(--orange)}
+.f .n{font-family:var(--mono);color:var(--orange);font-size:12px}
+.f h3{color:#fff;font-size:19px;margin:10px 0 8px}
+.f p{color:var(--dim);font-size:14px}
+/* 材料带 */
+.mat{background:var(--panel)}
+.mat .wrap{display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+.mat .lbl{font-family:var(--mono);color:var(--dim);font-size:13px;min-width:120px}
+.chip{border:1px solid var(--line);border-radius:99px;padding:8px 20px;font-family:var(--mono);font-size:14px;color:#fff}
+.chip.hot{border-color:var(--orange);color:var(--orange)}
+/* CTA */
+.cta{background:linear-gradient(120deg,#161616,#0a0a0a);text-align:center}
+.cta h2{margin-bottom:10px}
+/* footer */
+footer{padding:48px 0;color:var(--dim);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
+footer .cert{font-family:var(--mono);color:#666}
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav>
+  <div class="logo">KEY<span>VA</span></div>
+  <div class="menu"><a class="on" href="#">HOME</a><a href="#">PRODUCTS</a><a href="#">TECHNOLOGY</a><a href="#">ABOUT</a><a href="#">CONTACT</a></div>
+  <span class="badge">REQUEST QUOTE</span>
+</nav></div></header>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="tag">// CRITICAL SERVICE VALVE ENGINEERING</div>
+    <h1>关键阀门<br>关键<em>价值</em></h1>
+    <p>面向电力、石化与矿山的超严苛工况。Inconel 718 球座、热融合+纳米喷涂内件、压力式自密封 —— 每一颗阀门都为苛刻环境而生。</p>
+    <div class="btns"><a class="btn btn-o" href="#products">查看产品</a><a class="btn btn-d" href="#">技术白皮书</a></div>
+  </div>
+</div>
+
+<div class="readout"><div class="wrap">
+  <div class="rd"><b>4500<i> lb</i></b><span class="mono">MAX PRESSURE CLASS</span></div>
+  <div class="rd"><b>3/4"–12<i>"</i></b><span class="mono">SIZE RANGE</span></div>
+  <div class="rd"><b>±0<i> 外漏</i></b><span class="mono">DOUBLE BARRIER SEAL</span></div>
+  <div class="rd"><b>IN718</b><span class="mono">BALL SEAT ALLOY</span></div>
+</div></div>
+
+<section id="products">
+  <div class="wrap">
+    <div class="k">// PRODUCT LINES</div>
+    <h2>产品系列</h2>
+    <div class="prow">
+      <div class="vis">SB-STD</div>
+      <div class="pinfo">
+        <div class="num">01 / 07</div>
+        <h3>SB-STD · 方孔直通疏水球阀</h3>
+        <ul>
+          <li><b>规格</b>3/4"–6" · 600–4500Lb</li>
+          <li><b>材料</b>A105 / F22 / F91 / F92 / F316</li>
+          <li><b>连接</b>对焊</li>
+          <li><b>工况</b>锅炉定排·连排 / 汽包排汽 / 汽机疏水 / 减温水隔离</li>
+        </ul>
+      </div>
+    </div>
+    <div class="prow" style="margin-top:56px">
+      <div class="pinfo" style="order:2">
+        <div class="num">04 / 07</div>
+        <h3>TB · 双球阀（超严苛工况隔离）</h3>
+        <ul>
+          <li><b>规格</b>1"–4" · 1500–4500Lb</li>
+          <li><b>材料</b>A105 / F22 / F91 / F92</li>
+          <li><b>特点</b>双球同步启闭 · 两阀体间双重密封 · 独立驱动阀杆</li>
+          <li><b>工况</b>主蒸汽疏水 / 高加疏水 / 高压差易冲刷工况</li>
+        </ul>
+      </div>
+      <div class="vis" style="order:1">TB-DBL</div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--panel)">
+  <div class="wrap">
+    <div class="k">// ENGINEERING DETAILS</div>
+    <h2>工程细节</h2>
+    <div class="f4">
+      <div class="f"><div class="n">THERMAL SHOCK</div><h3>Inconel 718 球座</h3><p>高镍合金球座抗热冲击，应对疏水工况剧烈温变循环。</p></div>
+      <div class="f"><div class="n">SURFACE</div><h3>热融合 + 纳米喷涂</h3><p>阀门内件热融合喷涂叠加纳米喷涂，耐磨抗冲刷寿命显著提升。</p></div>
+      <div class="f"><div class="n">SEALING</div><h3>压力式自密封</h3><p>双阀杆防窜出、填料活载抗温变、阀体双道密封免外漏。</p></div>
+      <div class="f"><div class="n">DRIVABLE</div><h3>动力泄放系统</h3><p>SB-PCV / RB-PCV 两体锻造阀体，碟簧防震 + 球槽抗冲击设计。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="mat">
+  <div class="wrap">
+    <span class="lbl">MATERIALS</span>
+    <span class="chip">A105</span><span class="chip">F22</span><span class="chip">F51</span>
+    <span class="chip hot">F91</span><span class="chip hot">F92</span><span class="chip">F304</span><span class="chip">F316</span>
+    <span class="chip hot">Inconel 718</span>
+  </div>
+</section>
+
+<div class="cta"><div class="wrap">
+  <div class="k" style="margin-bottom:10px">// GET IN TOUCH</div>
+  <h2>工程选型 · 询价咨询</h2>
+  <p style="color:var(--dim);margin-bottom:26px">电力 021-50896336 · 石化/矿山 021-50898122 · info@keyva.cn</p>
+  <a class="btn btn-o" href="#">在线询价 →</a>
+</div></div>
+
+<footer><div class="wrap">
+  <div><div class="logo" style="font-size:20px">KEY<span>VA</span></div><p style="margin-top:10px">上海 · 纽约 · 伯明翰 三大 OSSC 布局</p></div>
+  <div class="cert">ISO 9001 / CE / ASME / TS CERTIFIED</div>
+  <div>© 2026 KEYVA · 沪ICP备2025153087号-1</div>
+</div></footer>
+</body></html>
