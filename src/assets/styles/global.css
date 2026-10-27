@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- base ---------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-neutral-50 text-neutral-800 antialiased;
+  }
+
+  /* Visible, high-contrast focus for keyboard users (a11y baseline). */
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand-accent ring-offset-2 ring-offset-neutral-50;
+  }
+
+  /* Respect users who prefer reduced motion. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ---------- components ---------- */
+@layer components {
+  .container-site {
+    @apply mx-auto max-w-6xl px-4 sm:px-6;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md px-5 py-3 text-sm font-semibold transition
+    focus-visible:ring-2 focus-visible:ring-offset-2;
+  }
+  .btn-primary {
+    @apply btn bg-brand-accent text-white hover:bg-brand-secondary hover:text-white;
+  }
+  .btn-outline {
+    @apply btn border border-brand-accent text-brand-secondary hover:bg-brand-accent hover:text-white;
+  }
+
+  /* Skip link: visually hidden until focused. */
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md
+    focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-brand-secondary;
+  }
+
+  /* Accessible live-region for form status. */
+  .form-status {
+    @apply rounded-md bg-neutral-100 p-3 text-sm text-neutral-800;
+  }
+}
+
+/* ---------- utilities ---------- */
+@layer utilities {
+  .sr-only-focusable:not(:focus):not(:focus-visible) {
+    @apply sr-only;
+  }
+}

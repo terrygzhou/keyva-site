@@ -1,0 +1,19 @@
+/**
+ * Cloudflare deployment for keyva-site.
+ * TODO: confirm the account_id matches the target Cloudflare account.
+ * Set "routes" to the live keyva domain once DNS is ready.
+ * compatibility_date is pinned to a date the installed wrangler binary
+ * supports; bump it after upgrading wrangler if you need newer features.
+ */
+{
+  "name": "keyva-site",
+  "account_id": "f1dde41dd761d452a79869a3bc85fc04",
+  "compatibility_date": "2026-10-01",
+  "main": "dist/_worker.js/index.js",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "dist"
+  },
+  "routes": ["keyvatech.com/*", "www.keyvatech.com/*"]
+}

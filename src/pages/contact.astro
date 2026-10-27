@@ -1,0 +1,129 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Contact" description="Start a conversation with KeyVA — enquiries and feedback welcome.">
+  <section class="py-16">
+    <div class="container-site">
+      <h1 class="font-display text-4xl font-bold text-brand-primary">Contact</h1>
+      <p class="mt-4 max-w-prose text-lg text-neutral-600">
+        A question, an enquiry, or feedback on this site — send it our way.
+      </p>
+
+      <div class="mt-12 grid gap-12 md:grid-cols-2">
+        <div>
+          <h2 class="text-xl font-semibold text-brand-primary">Direct</h2>
+          <dl class="mt-4 space-y-4 text-sm">
+            <div>
+              <dt class="font-semibold text-neutral-500">Email</dt>
+              <dd><a href="mailto:info@keyvatech.com" class="text-brand-accent hover:underline">info@keyvatech.com</a></dd>
+            </div>
+            <div>
+              <dt class="font-semibold text-neutral-500">Based in</dt>
+              <dd>Melbourne, Australia — remote-first, worldwide</dd>
+            </div>
+            <div>
+              <dt class="font-semibold text-neutral-500">Response time</dt>
+              <dd>Within one business day</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Enquiry form (a11y: labelled inputs, errors in an aria-live region,
+             success announced via role="status"). Plain inline script below. -->
+        <form id="enquiry-form" method="post" class="space-y-5">
+          <div>
+            <label for="name" class="block text-sm font-semibold text-neutral-700">Name</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              required
+              class="mt-1 w-full rounded-md border border-neutral-300 px-3 py-2 text-neutral-900 focus:border-brand-accent focus:outline-none focus:ring-2 focus:ring-brand-accent/40"
+            />
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-semibold text-neutral-700">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+              class="mt-1 w-full rounded-md border border-neutral-300 px-3 py-2 text-neutral-900 focus:border-brand-accent focus:outline-none focus:ring-2 focus:ring-brand-accent/40"
+            />
+          </div>
+          <div>
+            <label for="message" class="block text-sm font-semibold text-neutral-700">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              required
+              class="mt-1 w-full rounded-md border border-neutral-300 px-3 py-2 text-neutral-900 focus:border-brand-accent focus:outline-none focus:ring-2 focus:ring-brand-accent/40"
+            ></textarea>
+          </div>
+
+          <p id="form-errors" class="text-sm text-red-700" role="alert" aria-live="assertive"></p>
+          <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+
+          <button type="submit" name="submit" class="btn-primary">Send message</button>
+          <p class="text-xs text-neutral-400">
+            By submitting you agree to be contacted about your enquiry. We don't share your details.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const form = document.getElementById("enquiry-form") as HTMLFormElement | null;
+  const errorsEl = document.getElementById("form-errors") as HTMLParagraphElement | null;
+  const statusEl = document.getElementById("form-status") as HTMLParagraphElement | null;
+  const submitBtn = (form ? form.querySelector('button[type="submit"]') : null) as HTMLButtonElement | null;
+
+  if (form && submitBtn && errorsEl && statusEl) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = ((form.elements.namedItem("name") as HTMLInputElement) ?? { value: "" }).value.trim();
+      const email = ((form.elements.namedItem("email") as HTMLInputElement) ?? { value: "" }).value.trim();
+      const message = ((form.elements.namedItem("message") as HTMLTextAreaElement) ?? { value: "" }).value.trim();
+
+      errorsEl.textContent = "";
+      if (!name || !email || !message) {
+        errorsEl.textContent = "Please complete all fields before submitting.";
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errorsEl.textContent = "Please enter a valid email address.";
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending…";
+
+      try {
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, message, source: location.href }),
+        });
+        if (res.ok) {
+          statusEl.textContent =
+            "Thanks — your message is with us. We'll reply within one business day.";
+          form.reset();
+        } else {
+          const data = (await res.json().catch(() => ({}))) as { error?: string };
+          throw new Error(data.error || "Request failed.");
+        }
+      } catch (err) {
+        errorsEl.textContent =
+          "Sending failed (" + (err instanceof Error ? err.message : String(err)) + "). Please email us directly at info@keyvatech.com.";
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Send message";
+      }
+    });
+  }
+</script>
