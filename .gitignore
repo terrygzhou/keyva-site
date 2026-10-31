@@ -6,3 +6,6 @@ dist/
 data/enquiries/
 *.log
 .DS_Store
+
+# local deployment
+.deploy/serve.pid
