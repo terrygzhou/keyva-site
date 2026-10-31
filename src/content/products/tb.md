@@ -39,6 +39,8 @@ appsEn:
   - "Steam soot blowing"
   - "Other high-differential high-erosion conditions"
   - "Petrochemical extreme-service conditions"
-image: "/products/tb.png"
+image: "/products/tb.webp"
+gallery:
+  - "/products/tb-2.webp"
 asmeCertified: false
 isPCV: false

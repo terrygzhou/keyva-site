@@ -39,6 +39,10 @@ appsZh:
 appsEn:
   - "Power boiler / superheater power-actuated pressure release"
   - "Other process-steam PCV applications"
-image: "/products/pcv.png"
+image: "/products/pcv.webp"
+gallery:
+  - "/products/pcv-2.webp"
+  - "/products/pcv-3.webp"
+  - "/products/pcv-iso.webp"
 asmeCertified: true
 isPCV: true

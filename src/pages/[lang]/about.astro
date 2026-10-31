@@ -30,10 +30,39 @@ const culture: Array<[string, string]> = [
 ];
 
 const certs = [
-  { code: "TS 2024", label: isZh ? "TS 许可证书" : "TS Licence" },
-  { code: "ISO 9001 2024", label: isZh ? "ISO 9001 质量管理体系" : "ISO 9001 QMS" },
-  { code: "CE 2025", label: isZh ? "欧盟 CE 安全认证" : "EU CE Safety" },
-  { code: "ASME 2026", label: isZh ? "ASME 锅炉 PCV 认证" : "ASME Boiler PCV" },
+  { code: "TS 2024", file: "ts", label: isZh ? "TS 许可证书" : "TS Licence" },
+  { code: "ISO 9001 2024", file: "iso", label: isZh ? "ISO 9001 质量管理体系" : "ISO 9001 QMS" },
+  { code: "CE 2025", file: "ce", label: isZh ? "欧盟 CE 安全认证" : "EU CE Safety" },
+  { code: "ASME 2026", file: "asme", label: isZh ? "ASME 锅炉 PCV 认证" : "ASME Boiler PCV" },
+];
+
+// Site photographs from www.keyva.cn `pic/` (US OSSC, Shanghai OSSC & showroom).
+const sites = [
+  {
+    src: "/images/factory/shanghai-ossc.webp",
+    title: isZh ? "OSSC 上海 · 松江智造基地" : "Shanghai OSSC · Songjiang",
+    caption: isZh ? "一站式服务中心与金属密封球阀装配区" : "One-stop service centre and metal-seated ball valve assembly",
+  },
+  {
+    src: "/images/factory/us-ossc.webp",
+    title: isZh ? "美国 KEYVA · 休斯敦" : "US KEYVA · Houston",
+    caption: isZh ? "北美 OSSC 与仓储中心" : "North America OSSC and warehousing",
+  },
+  {
+    src: "/images/factory/us-warehouse.webp",
+    title: isZh ? "美国工厂 · 仓储与发运" : "US plant · warehouse & dispatch",
+    caption: isZh ? "整装待发的球阀与备件" : "Packaged ball valves and spares ready to ship",
+  },
+  {
+    src: "/images/factory/shanghai-showroom.webp",
+    title: isZh ? "上海 · 产品展示区" : "Shanghai · product showroom",
+    caption: isZh ? "SB / RB / PCV 全系列样机" : "SB / RB / PCV series samples",
+  },
+  {
+    src: "/images/factory/us-interior.webp",
+    title: isZh ? "美国 KEYVA · 质量与认证" : "US KEYVA · quality & certification",
+    caption: isZh ? "ISO 9001 展示墙与阀门样品" : "ISO 9001 display wall and valve samples",
+  },
 ];
 
 const partners = [
@@ -54,7 +83,7 @@ const partners = [
     <div class="container-site">
       <h1 class="font-display text-4xl font-extrabold text-brand-primary">{t(lang, "about.title")}</h1>
       <p class="mt-3 max-w-2xl text-lg text-neutral-600">{t(lang, "about.subtitle")}</p>
-      <TrustBadges lang={lang} />
+      <TrustBadges lang={lang} tone="light" />
     </div>
   </section>
 
@@ -82,6 +111,44 @@ const partners = [
           </div>
         ))}
       </div>
+
+      <!-- Site photography from keyva.cn pic/ -->
+      <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {sites.map((s) => (
+          <figure class="overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm">
+            <img
+              src={s.src}
+              alt={s.title}
+              width="1400"
+              height="1050"
+              loading="lazy"
+              decoding="async"
+              class="aspect-[4/3] w-full object-cover"
+            />
+            <figcaption class="p-4">
+              <p class="font-display text-sm font-semibold text-brand-primary">{s.title}</p>
+              <p class="mt-1 text-xs text-neutral-500">{s.caption}</p>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <figure class="mt-5 overflow-hidden rounded-xl border border-neutral-200 bg-white p-5 shadow-sm">
+        <img
+          src="/images/factory/partner-banners.webp"
+          alt={isZh ? "国能 e购与中石化 S-Zorb 框架合作" : "State Energy e-Procurement and Sinopec S-Zorb framework partnership"}
+          width="605"
+          height="124"
+          loading="lazy"
+          decoding="async"
+          class="mx-auto h-16 w-auto object-contain"
+        />
+        <figcaption class="mt-3 text-center text-xs text-neutral-500">
+          {isZh
+            ? "国能 e购、中石化 S-Zorb 装置框架合作品牌"
+            : "Framework partner brand for State Energy e-Procurement and Sinopec S-Zorb units"}
+        </figcaption>
+      </figure>
     </div>
   </section>
 
@@ -122,6 +189,34 @@ const partners = [
     </div>
   </section>
 
+  <!-- Brand promise -->
+  <section class="bg-neutral-100 py-16" aria-labelledby="brand-heading">
+    <div class="container-site grid items-center gap-10 lg:grid-cols-[0.75fr_1fr]">
+      <img
+        src="/images/brand/keyva-brand.webp"
+        alt="KEYVA — Super-Severe Service Valve Solutions"
+        width="1000"
+        height="1000"
+        loading="lazy"
+        decoding="async"
+        class="mx-auto w-full max-w-sm rounded-2xl border border-neutral-200 shadow-sm"
+      />
+      <div>
+        <h2 id="brand-heading" class="font-display text-2xl font-bold text-brand-primary">
+          KEY VALVE · KEY VALUE
+        </h2>
+        <p class="mt-4 leading-relaxed text-neutral-600">
+          {isZh
+            ? "KEYVA 的“关键阀门 · 核心价值”不仅是品牌口号，更是产品承诺：以金属密封球阀的耐久性，换来更少的更换、更低的非计划停机与更低的总拥有成本。"
+            : "“Key Valve · Key Value” is more than a tagline: durability in metal-seated ball valves translates into fewer replacements, less unplanned downtime and a lower total cost of ownership."}
+        </p>
+        <p class="mt-4 font-display text-lg font-semibold text-brand-accent">
+          Super-Severe Service Valve Solutions
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- Certifications wall -->
   <section class="bg-brand-primary py-16 text-white" aria-labelledby="certs-heading">
     <div class="container-site">
@@ -135,8 +230,15 @@ const partners = [
       </p>
       <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {certs.map((c) => (
-          <div class="rounded-xl border border-white/15 bg-white/10 p-5 backdrop-blur">
-            <p class="font-display text-xl font-bold text-brand-highlight">{c.code}</p>
+          <div class="rounded-xl border border-white/15 bg-white/10 p-6 text-center backdrop-blur">
+            <img
+              src={`/images/certs/${c.file}-white.png`}
+              alt={c.label}
+              loading="lazy"
+              decoding="async"
+              class="mx-auto h-16 w-auto object-contain"
+            />
+            <p class="mt-4 font-display text-lg font-bold text-brand-highlight">{c.code}</p>
             <p class="mt-1 text-sm text-neutral-200">{c.label}</p>
           </div>
         ))}

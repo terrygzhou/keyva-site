@@ -3,8 +3,10 @@ import { t } from "../i18n/index";
 
 interface Props {
   lang: string;
+  /** "dark" for the navy hero, "light" for neutral page headers. */
+  tone?: "dark" | "light";
 }
-const { lang = "zh" } = Astro.props;
+const { lang = "zh", tone = "dark" } = Astro.props;
 
 const badges = [
   { key: "trust.founded", icon: "🏛️" },
@@ -12,11 +14,16 @@ const badges = [
   { key: "trust.asme", icon: "🛡️" },
   { key: "trust.patents", icon: "🔬" },
 ];
+
+const badgeClass =
+  tone === "light"
+    ? "border-neutral-200 bg-white text-brand-primary shadow-sm"
+    : "border-white/15 bg-white/10 text-white backdrop-blur";
 ---
 
 <ul class="trust-badges flex flex-wrap gap-3" aria-label={lang === "zh" ? "信任角标" : "Trust badges"}>
   {badges.map((b) => (
-    <li class="trust-badge list-none m-0 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold text-white backdrop-blur">
+    <li class={`trust-badge list-none m-0 inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-semibold ${badgeClass}`}>
       <span aria-hidden="true">{b.icon}</span>
       {t(lang, b.key)}
     </li>

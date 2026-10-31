@@ -29,6 +29,8 @@ const products = defineCollection({
     appsEn: z.array(z.string()),
     /** Image path under public/ (optional) */
     image: z.string().optional(),
+    /** Additional product photographs under public/ (alternate angles, actuated variants) */
+    gallery: z.array(z.string()).default([]),
     /** Whether ASME certified */
     asmeCertified: z.boolean().default(false),
     /** Whether it's a PCV (power-actuated control valve) */

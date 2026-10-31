@@ -47,6 +47,9 @@ appsEn:
   - "Extraction steam / reheat drain"
   - "Primary / secondary steam / gas / EH-oil isolation"
   - "Pressure measurement and control"
-image: "/products/sb-std.png"
+image: "/products/sb-std.webp"
+gallery:
+  - "/products/sb-std-vact.webp"
+  - "/products/sb-std-d.webp"
 asmeCertified: false
 isPCV: false

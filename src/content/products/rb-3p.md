@@ -29,6 +29,8 @@ appsEn:
   - "Power-plant feedwater-pump minimum-flow fast-close isolation valve"
   - "Attemperator-water fast-close isolation valve"
   - "Other emergency shutoff valves"
-image: "/products/rb-3p.png"
+image: "/products/rb-3p.webp"
+gallery:
+  - "/products/rb-3p-2.webp"
 asmeCertified: false
 isPCV: false

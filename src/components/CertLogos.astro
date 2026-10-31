@@ -1,0 +1,67 @@
+---
+/** Certification wall sourced from the www.keyva.cn `pic/logo/` assets.
+ *
+ *  tone="light" uses the colour marks on a light background; tone="dark" uses
+ *  the `_W` (white) marks for the navy footer/cert band. */
+interface Props {
+  lang: string;
+  tone?: "light" | "dark";
+  showLabels?: boolean;
+  size?: "sm" | "md" | "lg";
+}
+
+const { lang = "zh", tone = "light", showLabels = true, size = "md" } = Astro.props;
+const isZh = lang === "zh";
+
+const certs = [
+  {
+    key: "iso",
+    file: "iso",
+    alt: "ISO 9001:2015",
+    label: isZh ? "ISO 9001 质量管理体系" : "ISO 9001 quality management",
+  },
+  {
+    key: "ce",
+    file: "ce",
+    alt: "CE",
+    label: isZh ? "欧盟 CE 安全认证" : "EU CE safety certification",
+  },
+  {
+    key: "asme",
+    file: "asme",
+    alt: "ASME",
+    label: isZh ? "ASME 锅炉 PCV 认证" : "ASME boiler PCV certification",
+  },
+  {
+    key: "ts",
+    file: "ts",
+    alt: "TS",
+    label: isZh ? "TS 特种设备许可" : "TS special-equipment licence",
+  },
+];
+
+const suffix = tone === "dark" ? "-white" : "";
+const imgSize = {
+  sm: "h-8",
+  md: "h-12",
+  lg: "h-16",
+}[size];
+const labelClass = tone === "dark" ? "text-neutral-400" : "text-neutral-500";
+---
+
+<ul class="flex flex-wrap items-center gap-x-10 gap-y-6" aria-label={isZh ? "认证资质" : "Certifications"}>
+  {certs.map((c) => (
+    <li class="flex flex-col items-center gap-2">
+      <img
+        src={`/images/certs/${c.file}${suffix}.png`}
+        alt={c.alt}
+        loading="lazy"
+        decoding="async"
+        class={`${imgSize} w-auto object-contain`}
+      />
+      {showLabels && (
+        <span class={`text-center text-xs font-medium ${labelClass}`}>{c.label}</span>
+      )}
+    </li>
+  ))}
+</ul>

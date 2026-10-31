@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { readFileSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
 /**
@@ -91,6 +91,19 @@ describe("products collection", () => {
           (p[field] as unknown[]).length,
           `${p.series} ${field} empty`
         ).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it("every product image and gallery shot exists under public/", () => {
+    const products = readFrontmatter("products");
+    for (const p of products) {
+      const image = String(p.image ?? "").trim();
+      expect(image, `${p.series} missing image`).toBeTruthy();
+      const paths = [image, ...((p.gallery as string[] | undefined) ?? [])];
+      for (const src of paths) {
+        const file = join(root, "public", src.replace(/^\//, ""));
+        expect(existsSync(file), `${p.series} image not found: ${src}`).toBe(true);
       }
     }
   });

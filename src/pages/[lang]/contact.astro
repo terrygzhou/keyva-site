@@ -26,6 +26,22 @@ const ossc = [
     <div class="container-site">
       <h1 class="font-display text-4xl font-extrabold text-brand-primary">{t(lang, "contact.title")}</h1>
       <p class="mt-3 max-w-2xl text-lg text-neutral-600">{t(lang, "contact.subtitle")}</p>
+      <figure class="mt-8 overflow-hidden rounded-2xl border border-neutral-200 shadow-sm">
+        <img
+          src="/images/factory/shanghai-ossc.webp"
+          alt={isZh ? "OSSC 上海 · 松江智造基地" : "Shanghai OSSC · Songjiang"}
+          width="1220"
+          height="848"
+          loading="lazy"
+          decoding="async"
+          class="aspect-[21/9] w-full object-cover"
+        />
+        <figcaption class="bg-white px-4 py-2 text-xs text-neutral-500">
+          {isZh
+            ? "OSSC 上海 · 上海市松江区申港路 3255 号金地威新智造园 7 栋 1 层"
+            : "Shanghai OSSC · 1F, Bldg 7, Jindi Weixing Smart Park, 3255 Shengang Rd, Songjiang, Shanghai"}
+        </figcaption>
+      </figure>
     </div>
   </section>
 

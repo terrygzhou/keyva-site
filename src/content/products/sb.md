@@ -25,6 +25,9 @@ appsZh:
 appsEn:
   - "Sinopec SZorb unit valves (frame contracts)"
   - "Slurry-pipe isolation (Jinchuan, Dahongshan iron mine, etc.)"
-image: "/products/sb-szorb.png"
+image: "/products/sb-szorb.webp"
+gallery:
+  - "/products/sb-szorb-2.webp"
+  - "/products/sb-szorb-actuated.webp"
 asmeCertified: false
 isPCV: false

@@ -1,5 +1,6 @@
 ---
 import { t, localPath } from "../i18n/index";
+import CertLogos from "./CertLogos.astro";
 
 interface Props {
   lang: string;
@@ -28,7 +29,14 @@ const contact = {
   <div class="container-site py-10">
     <div class="grid gap-8 md:grid-cols-3">
       <div>
-        <p class="font-display text-xl font-bold text-white">KEYVA</p>
+        <img
+          src="/images/brand/keyva-logo-white.png"
+          alt="KEYVA"
+          width="649"
+          height="183"
+          class="h-9 w-auto"
+          loading="lazy"
+        />
         <p class="mt-3 text-sm leading-relaxed text-neutral-400">
           {isZh
             ? "专业高端金属密封球阀制造商，专注电力、石化、矿山苛刻工况阀门解决方案。"
@@ -55,8 +63,11 @@ const contact = {
         <p class="mt-4 text-xs text-neutral-600">沪ICP备2025153087号-1</p>
       </div>
     </div>
-    <p class="mt-10 border-t border-neutral-800 pt-6 text-xs text-neutral-500">
-      &copy; {year} KEYVA. {isZh ? "保留所有权利。" : "All rights reserved."}
-    </p>
+    <div class="mt-10 flex flex-col gap-5 border-t border-neutral-800 pt-6 sm:flex-row sm:items-center sm:justify-between">
+      <CertLogos lang={lang} tone="dark" size="sm" showLabels={false} />
+      <p class="text-xs text-neutral-500">
+        &copy; {year} KEYVA. {isZh ? "保留所有权利。" : "All rights reserved."}
+      </p>
+    </div>
   </div>
 </footer>

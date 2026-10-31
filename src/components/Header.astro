@@ -34,9 +34,15 @@ function linkFor(core: string) {
 
 <header class="sticky top-0 z-40 border-b border-neutral-200 bg-white/95 backdrop-blur">
   <nav aria-label="Primary" class="container-site flex items-center justify-between py-4">
-    <a href={linkFor("/")} class="flex items-baseline gap-2 font-display text-2xl font-extrabold text-brand-primary">
-      KEYVA
-      <span class="hidden text-xs font-semibold uppercase tracking-widest text-neutral-400 sm:inline">
+    <a href={linkFor("/")} class="flex items-center gap-3" aria-label="KEYVA — home">
+      <img
+        src="/images/brand/keyva-logo.png"
+        alt="KEYVA"
+        width="1181"
+        height="329"
+        class="h-9 w-auto sm:h-10"
+      />
+      <span class="hidden text-xs font-semibold uppercase tracking-widest text-neutral-400 lg:inline">
         {isZh ? "关键阀门 · 核心价值" : "Key Valve · Key Value"}
       </span>
     </a>

@@ -30,25 +30,47 @@ const hasBody = product.body?.trim().length > 0;
   title={isZh ? `${product.data.nameZh} — ${product.data.series}` : `${product.data.nameEn} · ${product.data.series}`}
   description={isZh ? product.data.descZh : product.data.descEn}>
   <section class="bg-neutral-100 py-14">
-    <div class="container-site">
-      <p class="text-sm font-semibold uppercase tracking-wider text-brand-accent">{product.data.series}</p>
-      <h1 class="mt-2 font-display text-3xl font-extrabold text-brand-primary sm:text-4xl">
-        {isZh ? product.data.nameZh : product.data.nameEn}
-      </h1>
-      <p class="mt-4 max-w-3xl text-lg leading-relaxed text-neutral-600">
-        {isZh ? product.data.descZh : product.data.descEn}
-      </p>
-      {product.data.asmeCertified && (
-        <span class="mt-4 inline-block rounded-full bg-brand-primary px-4 py-1.5 text-sm font-semibold text-white">
-          {isZh ? "ASME 认证（2026）" : "ASME certified (2026)"}
-        </span>
-      )}
-      <div class="mt-8 flex flex-wrap gap-4">
-        <a href={localPath(lang, "/contact/")} class="btn-primary">{t(lang, "products.inquiry")}</a>
-        <a href={localPath(lang, "/products/")} class="btn-outline">
-          {isZh ? "查看全部产品" : "All products"}
-        </a>
+    <div class="container-site grid items-center gap-10 lg:grid-cols-[1.1fr_1fr]">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-wider text-brand-accent">{product.data.series}</p>
+        <h1 class="mt-2 font-display text-3xl font-extrabold text-brand-primary sm:text-4xl">
+          {isZh ? product.data.nameZh : product.data.nameEn}
+        </h1>
+        <p class="mt-4 max-w-3xl text-lg leading-relaxed text-neutral-600">
+          {isZh ? product.data.descZh : product.data.descEn}
+        </p>
+        {product.data.asmeCertified && (
+          <div class="mt-4 flex flex-wrap items-center gap-3">
+            <span class="inline-block rounded-full bg-brand-primary px-4 py-1.5 text-sm font-semibold text-white">
+              {isZh ? "ASME 认证（2026）" : "ASME certified (2026)"}
+            </span>
+            <img
+              src="/images/certs/asme.png"
+              alt="ASME"
+              width="219"
+              height="211"
+              class="h-9 w-auto object-contain"
+              loading="lazy"
+            />
+          </div>
+        )}
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href={localPath(lang, "/contact/")} class="btn-primary">{t(lang, "products.inquiry")}</a>
+          <a href={localPath(lang, "/products/")} class="btn-outline">
+            {isZh ? "查看全部产品" : "All products"}
+          </a>
+        </div>
       </div>
+      <figure class="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
+        <img
+          src={product.data.image}
+          alt={isZh ? product.data.nameZh : product.data.nameEn}
+          width="1400"
+          height="788"
+          decoding="async"
+          class="aspect-[16/9] w-full object-cover"
+        />
+      </figure>
     </div>
   </section>
 
@@ -112,6 +134,31 @@ const hasBody = product.body?.trim().length > 0;
       </div>
     )}
   </section>
+
+  {product.data.gallery.length > 0 && (
+    <section class="bg-neutral-100 py-12" aria-labelledby="gallery-heading">
+      <div class="container-site">
+        <h2 id="gallery-heading" class="font-display text-2xl font-bold text-brand-primary">
+          {isZh ? "产品图集" : "Product gallery"}
+        </h2>
+        <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {product.data.gallery.map((src, i) => (
+            <figure class="overflow-hidden rounded-xl border border-neutral-200 bg-white">
+              <img
+                src={src}
+                alt={`${isZh ? product.data.nameZh : product.data.nameEn} — ${i + 2}`}
+                width="1400"
+                height="788"
+                loading="lazy"
+                decoding="async"
+                class="aspect-[16/9] w-full bg-white object-contain"
+              />
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 
   <section class="bg-neutral-100 py-14 text-center">
     <div class="container-site">

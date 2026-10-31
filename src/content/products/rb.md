@@ -27,6 +27,8 @@ appsEn:
   - "Jinchuan Mining"
   - "Daliangshan iron-ore slurry pipeline"
   - "Other slurry / abrasive service"
-image: "/products/rb.png"
+image: "/products/rb.webp"
+gallery:
+  - "/products/rb-2.webp"
 asmeCertified: false
 isPCV: false

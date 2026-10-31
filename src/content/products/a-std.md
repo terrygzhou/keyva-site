@@ -29,6 +29,9 @@ appsZh:
 appsEn:
   - "Drain applications requiring angle connection"
   - "Isolation angle valve applications"
-image: "/products/a-std.png"
+image: "/products/a-std.webp"
+gallery:
+  - "/products/a-std-vact.webp"
+  - "/products/a-std-d.webp"
 asmeCertified: false
 isPCV: false
