@@ -1,12 +1,12 @@
-# KEYV-9 — bind the local server to keva-test.eywalink.org
+# KEYV-9 — bind the local server to keyva-test.eywalink.org
 
 Goal: reach the local keyva-site test server (static Astro build on
-`0.0.0.0:8765` via `.deploy/serve.cjs`) at `keva-test.eywalink.org` so the
+`0.0.0.0:8765` via `.deploy/serve.cjs`) at `keyva-test.eywalink.org` so the
 owner can verify the site on a fixed test hostname.
 
 ## Status: LIVE
 
-`https://keva-test.eywalink.org/` → 200, full KEYVA site.
+`https://keyva-test.eywalink.org/` → 200, full KEYVA site.
 
 ## How it works
 
@@ -17,7 +17,7 @@ A CNAME record was created via the Cloudflare API (token from OpenBao
 sees the `eywalink.org` zone):
 
 ```
-keva-test.eywalink.org CNAME → a58c16f6-1645-4901-8657-76ab944eb4c6.cfargotunnel.com
+keyva-test.eywalink.org CNAME → a58c16f6-1645-4901-8657-76ab944eb4c6.cfargotunnel.com
 ```
 
 This follows the same pattern as `console`, `control`, `umami`, `track`,
@@ -30,8 +30,8 @@ catch-all, same file used by the `cloudflared-tunnel` systemd service):
 
 ```yaml
   # 2026-10-31 KEYV-9: local keyva-site test server (0.0.0.0:8765) behind
-  # keva-test.eywalink.org so the site is reachable on the test hostname.
-  - hostname: keva-test.eywalink.org
+  # keyva-test.eywalink.org so the site is reachable on the test hostname.
+  - hostname: keyva-test.eywalink.org
     service: http://127.0.0.1:8765
 ```
 
