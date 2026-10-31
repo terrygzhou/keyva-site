@@ -4,52 +4,148 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>选型问答 - KEYVA</title>
-<meta name="description" content="">
-<link rel="stylesheet" href="assets/styles.css">
+<meta name="description" content="KEYVA 选型助手：回答 3-5 个工况问题，即可推荐合适的阀门系列、材料与连接方式。">
+<link rel="stylesheet" href="../assets/styles.css">
 </head>
 <body>
 <div class="topbar"><div class="wrap"><span>电力咨询 021-50896336 · 石化/矿山咨询 021-50898122</span><span>info@keyva.cn</span></div></div>
 <header><div class="wrap"><nav>
-  <a class="logo" href="index.html"><span class="mark">KEYVA</span><span><b>KEYVA</b><small>关键阀门 核心价值</small></span></a>
+  <a class="logo" href="../index.html"><span class="mark">KEYVA</span><span><b>KEYVA</b><small>关键阀门 核心价值</small></span></a>
   <div class="menu" id="menu">
-<a class="" href="index.html">首页</a>
-<a class="" href="industries/index.html">行业</a>
-<a class="" href="products/index.html">产品</a>
-<a class="" href="solutions/index.html">解决方案</a>
-<a class="on" href="tools/index.html">工具</a>
-<a class="" href="cases/index.html">案例</a>
-<a class="" href="company/index.html">公司</a>
-<a class="" href="contact/index.html">联系</a>
+<a class="" href="../index.html">首页</a>
+<a class="" href="../industries/index.html">行业</a>
+<a class="" href="../products/index.html">产品</a>
+<a class="" href="../solutions/index.html">解决方案</a>
+<a class="on" href="index.html">工具</a>
+<a class="" href="../cases/index.html">案例</a>
+<a class="" href="../company/index.html">公司</a>
+<a class="" href="../contact/index.html">联系</a>
   </div>
   <div class="hd-cta">
-    <a class="lang" href="index.html" title="English version — 即将上线">EN</a>
-    <a class="cta" href="contact/index.html">在线询价</a>
+    <a class="lang" href="../index.html" title="English version — 即将上线">EN</a>
+    <a class="cta" href="../contact/index.html">在线询价</a>
     <button class="menu-toggle" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
   </div>
 </nav></div></header>
-<main>3–5 问推系列</main>
+<main>
+<div class="wrap"><div class="breadcrumb"><a href="../index.html">首页</a> / <a href="index.html">工具</a> / 选型助手</div></div>
+<div class="hero"><div class="valve"></div>
+  <div class="wrap">
+    <h1>选型助手</h1>
+    <h2>3-5 个问题，推荐系列</h2>
+    <p>回答工况类型、介质、温度压力、数量交期等 3-5 个问题，即可得到推荐的阀门系列、材料与连接方式建议。</p>
+    <div class="btns">
+      <a class="btn btn-g" href="index.html">返回工具矩阵</a>
+    </div>
+  </div>
+</div>
+<section>
+  <div class="wrap">
+    <div class="h-sec"><div class="k">Steps</div><h2>选型步骤</h2><p>四个步骤，从工况到交期，逐步锁定匹配系列。</p></div>
+    <div class="steps">
+      <div class="step"><span class="n">1</span><h4>工况类型</h4><p>疏水、排汽、隔离、快关、泄放，决定大类方向。</p></div>
+      <div class="step"><span class="n">2</span><h4>介质</h4><p>蒸汽、水、油、浆料或含磨料介质，决定材料取向。</p></div>
+      <div class="step"><span class="n">3</span><h4>温度 / 压力</h4><p>工况参数直接决定压力等级与阀体材料。</p></div>
+      <div class="step"><span class="n">4</span><h4>数量 / 交期</h4><p>单件到批量、常规到加急，影响排产与报价。</p></div>
+    </div>
+  </div>
+</section>
+<section class="feat">
+  <div class="wrap">
+    <div class="h-sec"><div class="k">Form</div><h2>选型表单</h2><p>提交后工程团队将在 48 小时内回复系列 + 材料 + 连接方式的选型建议，并预填您的询盘表单。</p></div>
+    <div style="max-width:560px;margin:0 auto">
+      <form action="../contact/index.html" method="get">
+        <div class="field">
+          <label for="sa-type">工况类型</label>
+          <select id="sa-type" name="type">
+            <option value="疏水">疏水</option>
+            <option value="排汽">排汽</option>
+            <option value="隔离">隔离</option>
+            <option value="快关">快关</option>
+            <option value="泄放">泄放</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sa-medium">介质</label>
+          <select id="sa-medium" name="medium">
+            <option value="蒸汽">蒸汽</option>
+            <option value="水">水</option>
+            <option value="油">油</option>
+            <option value="浆料">浆料</option>
+            <option value="含磨料介质">含磨料介质</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sa-temp">温度</label>
+          <select id="sa-temp" name="temp">
+            <option value="常温">常温</option>
+            <option value="中温 &lt;300°C">中温 &lt;300°C</option>
+            <option value="高温 300-500°C">高温 300-500°C</option>
+            <option value="超高温 &gt;500°C">超高温 &gt;500°C</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sa-pressure">压力</label>
+          <select id="sa-pressure" name="pressure">
+            <option value="&lt;600 Lb">&lt;600 Lb</option>
+            <option value="600-1500 Lb">600-1500 Lb</option>
+            <option value="1500-3100 Lb">1500-3100 Lb</option>
+            <option value="&gt;3100 Lb">&gt;3100 Lb</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sa-qty">数量</label>
+          <select id="sa-qty" name="qty">
+            <option value="单件">单件</option>
+            <option value="小批">小批</option>
+            <option value="批量">批量</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sa-lead">交期</label>
+          <select id="sa-lead" name="leadtime">
+            <option value="4 周">4 周</option>
+            <option value="8 周">8 周</option>
+            <option value="加急">加急</option>
+          </select>
+        </div>
+        <button class="btn btn-o" type="submit">提交选型</button>
+      </form>
+      <p style="font-size:13px;color:var(--gray);margin-top:16px">提交后工程团队将在 48 小时内回复系列 + 材料 + 连接方式的选型建议，并预填您的询盘表单。</p>
+      <p style="font-size:12px;color:var(--gray);margin-top:8px">本工具为前端演示形态，选型结果将由工程团队人工确认。</p>
+    </div>
+  </div>
+</section>
+<section class="cta-band">
+  <div class="wrap">
+    <h2>直接和工程团队沟通</h2>
+    <p>复杂工况或定制需求，工程团队 48 小时内响应。</p>
+    <a class="btn btn-o" href="../contact/index.html">在线询价</a>
+  </div>
+</section>
+</main>
 <footer><div class="wrap">
   <div class="fgrid2">
     <div><h4>KEYVA · 关键阀门 核心价值</h4><p>专业的阀门制造商，专注于高端金属密封球阀产品及服务。纽约 · 伯明翰 · 上海三大 OSSC 全球布局。</p></div>
     <div><h4>行业</h4><ul>
-      <li><a href="industries/power-boiler.html">电力 / 锅炉</a></li>
-      <li><a href="industries/petrochem-szorb.html">石化 / SZorb</a></li>
-      <li><a href="industries/mining-slurry.html">矿山 / 浆料</a></li>
+      <li><a href="../industries/power-boiler.html">电力 / 锅炉</a></li>
+      <li><a href="../industries/petrochem-szorb.html">石化 / SZorb</a></li>
+      <li><a href="../industries/mining-slurry.html">矿山 / 浆料</a></li>
     </ul></div>
     <div><h4>产品系列</h4><ul>
-      <li><a href="products/sb-std.html">SB-STD 疏水球阀</a></li>
-      <li><a href="products/sb-pcv.html">SB-PCV 动力泄放阀</a></li>
-      <li><a href="products/tb.html">TB 双球阀</a></li>
-      <li><a href="products/rb.html">RB 圆孔球阀</a></li>
-      <li><a href="products/rb-3p.html">RB-3P 三体快关球阀</a></li>
-      <li><a href="products/sb.html">SB 方孔球阀</a></li>
+      <li><a href="../products/sb-std.html">SB-STD 疏水球阀</a></li>
+      <li><a href="../products/sb-pcv.html">SB-PCV 动力泄放阀</a></li>
+      <li><a href="../products/tb.html">TB 双球阀</a></li>
+      <li><a href="../products/rb.html">RB 圆孔球阀</a></li>
+      <li><a href="../products/rb-3p.html">RB-3P 三体快关球阀</a></li>
+      <li><a href="../products/sb.html">SB 方孔球阀</a></li>
     </ul></div>
     <div><h4>服务</h4><ul>
-      <li><a href="solutions/index.html">采购+服务计划</a></li>
-      <li><a href="tools/index.html">选型工具</a></li>
-      <li><a href="order-status/index.html">订单状态查询</a></li>
-      <li><a href="trust/index.html">信任资质</a></li>
-      <li><a href="resources/index.html">资源中心</a></li>
+      <li><a href="../solutions/index.html">采购+服务计划</a></li>
+      <li><a href="index.html">选型工具</a></li>
+      <li><a href="../order-status/index.html">订单状态查询</a></li>
+      <li><a href="../trust/index.html">信任资质</a></li>
+      <li><a href="../resources/index.html">资源中心</a></li>
     </ul></div>
   </div>
   <div class="compliance">

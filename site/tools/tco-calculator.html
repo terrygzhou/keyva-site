@@ -4,52 +4,132 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TCO 计算器 - KEYVA</title>
-<meta name="description" content="">
-<link rel="stylesheet" href="assets/styles.css">
+<meta name="description" content="KEYVA TCO 计算器：估算 5 年全周期成本，覆盖阀门采购、备品、预防性维护与非计划停机损失。">
+<link rel="stylesheet" href="../assets/styles.css">
 </head>
 <body>
 <div class="topbar"><div class="wrap"><span>电力咨询 021-50896336 · 石化/矿山咨询 021-50898122</span><span>info@keyva.cn</span></div></div>
 <header><div class="wrap"><nav>
-  <a class="logo" href="index.html"><span class="mark">KEYVA</span><span><b>KEYVA</b><small>关键阀门 核心价值</small></span></a>
+  <a class="logo" href="../index.html"><span class="mark">KEYVA</span><span><b>KEYVA</b><small>关键阀门 核心价值</small></span></a>
   <div class="menu" id="menu">
-<a class="" href="index.html">首页</a>
-<a class="" href="industries/index.html">行业</a>
-<a class="" href="products/index.html">产品</a>
-<a class="" href="solutions/index.html">解决方案</a>
-<a class="on" href="tools/index.html">工具</a>
-<a class="" href="cases/index.html">案例</a>
-<a class="" href="company/index.html">公司</a>
-<a class="" href="contact/index.html">联系</a>
+<a class="" href="../index.html">首页</a>
+<a class="" href="../industries/index.html">行业</a>
+<a class="" href="../products/index.html">产品</a>
+<a class="" href="../solutions/index.html">解决方案</a>
+<a class="on" href="index.html">工具</a>
+<a class="" href="../cases/index.html">案例</a>
+<a class="" href="../company/index.html">公司</a>
+<a class="" href="../contact/index.html">联系</a>
   </div>
   <div class="hd-cta">
-    <a class="lang" href="index.html" title="English version — 即将上线">EN</a>
-    <a class="cta" href="contact/index.html">在线询价</a>
+    <a class="lang" href="../index.html" title="English version — 即将上线">EN</a>
+    <a class="cta" href="../contact/index.html">在线询价</a>
     <button class="menu-toggle" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
   </div>
 </nav></div></header>
-<main>按工况估算全周期成本</main>
+<main>
+<div class="wrap"><div class="breadcrumb"><a href="../index.html">首页</a> / <a href="index.html">工具</a> / TCO 计算器</div></div>
+<div class="hero"><div class="valve"></div>
+  <div class="wrap">
+    <h1>TCO 计算器</h1>
+    <h2>全周期成本估算</h2>
+    <p>5 年 TCO 估算：阀门采购 + 备品 + 预防性维护 + 非计划停机损失，对比采购单价看全周期成本。</p>
+    <div class="btns">
+      <a class="btn btn-g" href="index.html">返回工具矩阵</a>
+    </div>
+  </div>
+</div>
+<section>
+  <div class="wrap">
+    <div class="h-sec"><div class="k">Steps</div><h2>估算步骤</h2><p>四个输入项，估算 5 年全周期成本。</p></div>
+    <div class="steps">
+      <div class="step"><span class="n">1</span><h4>选择系列</h4><p>从 SB-STD、A-STD、SB-PCV、TB、RB、RB-3P、SB 中选择目标系列。</p></div>
+      <div class="step"><span class="n">2</span><h4>数量</h4><p>本次采购或项目周期内的阀门数量。</p></div>
+      <div class="step"><span class="n">3</span><h4>年启闭次数</h4><p>预估年启闭频次，影响内件寿命与备品节奏。</p></div>
+      <div class="step"><span class="n">4</span><h4>停机损失估算</h4><p>每小时停机损失（万元/小时），用于估算非计划停机成本。</p></div>
+    </div>
+  </div>
+</section>
+<section class="feat">
+  <div class="wrap">
+    <div class="h-sec"><div class="k">Form</div><h2>TCO 估算表单</h2><p>提交后工程团队将基于 5 年周期输出定制 TCO 估算。</p></div>
+    <div style="max-width:560px;margin:0 auto">
+      <form action="../contact/index.html" method="get">
+        <div class="field">
+          <label for="tc-serial">系列</label>
+          <select id="tc-serial" name="series">
+            <option value="SB-STD">SB-STD</option>
+            <option value="A-STD">A-STD</option>
+            <option value="SB-PCV">SB-PCV</option>
+            <option value="TB">TB</option>
+            <option value="RB">RB</option>
+            <option value="RB-3P">RB-3P</option>
+            <option value="SB">SB</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="tc-qty">数量</label>
+          <input id="tc-qty" name="qty" type="text" placeholder="请输入数量">
+        </div>
+        <div class="field">
+          <label for="tc-cycles">年启闭次数</label>
+          <input id="tc-cycles" name="cycles" type="text" placeholder="请输入每年启闭次数">
+        </div>
+        <div class="field">
+          <label for="tc-down">停机损失估算（万元/小时）</label>
+          <input id="tc-down" name="downloss" type="text" placeholder="请输入停机损失估算">
+        </div>
+        <button class="btn btn-o" type="submit">获取 TCO 估算</button>
+      </form>
+      <p style="font-size:12px;color:var(--gray);margin-top:16px">本计算器为估算形态，精确 TCO 请联系工程团队，提交询盘后获得定制估算。</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <div class="h-sec"><div class="k">Cost Model</div><h2>成本构成说明</h2><p>TCO 由四类成本构成。</p></div>
+    <table class="stable">
+      <thead><tr><th>成本项</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>初始采购</td><td>阀门本体验金 + 内件</td></tr>
+        <tr><td>备品</td><td>球座、密封环、填料包（建议 2-3 年一批）</td></tr>
+        <tr><td>预防性维护</td><td>年度检查 + 内件更换人工</td></tr>
+        <tr><td>非计划停机损失</td><td>小时停机损失 × 预计停机小时数</td></tr>
+        <tr><td>5 年 TCO 合计</td><td>上述四项之和，对比采购单价看全周期成本</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="cta-band">
+  <div class="wrap">
+    <h2>需要定制 TCO 估算？</h2>
+    <p>提交询盘，工程团队基于您的工况输出 5 年定制 TCO 报告。</p>
+    <a class="btn btn-o" href="../contact/index.html">在线询价</a>
+  </div>
+</section>
+</main>
 <footer><div class="wrap">
   <div class="fgrid2">
     <div><h4>KEYVA · 关键阀门 核心价值</h4><p>专业的阀门制造商，专注于高端金属密封球阀产品及服务。纽约 · 伯明翰 · 上海三大 OSSC 全球布局。</p></div>
     <div><h4>行业</h4><ul>
-      <li><a href="industries/power-boiler.html">电力 / 锅炉</a></li>
-      <li><a href="industries/petrochem-szorb.html">石化 / SZorb</a></li>
-      <li><a href="industries/mining-slurry.html">矿山 / 浆料</a></li>
+      <li><a href="../industries/power-boiler.html">电力 / 锅炉</a></li>
+      <li><a href="../industries/petrochem-szorb.html">石化 / SZorb</a></li>
+      <li><a href="../industries/mining-slurry.html">矿山 / 浆料</a></li>
     </ul></div>
     <div><h4>产品系列</h4><ul>
-      <li><a href="products/sb-std.html">SB-STD 疏水球阀</a></li>
-      <li><a href="products/sb-pcv.html">SB-PCV 动力泄放阀</a></li>
-      <li><a href="products/tb.html">TB 双球阀</a></li>
-      <li><a href="products/rb.html">RB 圆孔球阀</a></li>
-      <li><a href="products/rb-3p.html">RB-3P 三体快关球阀</a></li>
-      <li><a href="products/sb.html">SB 方孔球阀</a></li>
+      <li><a href="../products/sb-std.html">SB-STD 疏水球阀</a></li>
+      <li><a href="../products/sb-pcv.html">SB-PCV 动力泄放阀</a></li>
+      <li><a href="../products/tb.html">TB 双球阀</a></li>
+      <li><a href="../products/rb.html">RB 圆孔球阀</a></li>
+      <li><a href="../products/rb-3p.html">RB-3P 三体快关球阀</a></li>
+      <li><a href="../products/sb.html">SB 方孔球阀</a></li>
     </ul></div>
     <div><h4>服务</h4><ul>
-      <li><a href="solutions/index.html">采购+服务计划</a></li>
-      <li><a href="tools/index.html">选型工具</a></li>
-      <li><a href="order-status/index.html">订单状态查询</a></li>
-      <li><a href="trust/index.html">信任资质</a></li>
-      <li><a href="resources/index.html">资源中心</a></li>
+      <li><a href="../solutions/index.html">采购+服务计划</a></li>
+      <li><a href="index.html">选型工具</a></li>
+      <li><a href="../order-status/index.html">订单状态查询</a></li>
+      <li><a href="../trust/index.html">信任资质</a></li>
+      <li><a href="../resources/index.html">资源中心</a></li>
     </ul></div>
   </div>
   <div class="compliance">

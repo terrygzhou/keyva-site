@@ -4,52 +4,160 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>联系我们 - KEYVA</title>
-<meta name="description" content="">
-<link rel="stylesheet" href="assets/styles.css">
+<meta name="description" content="联系 KEYVA — 按行业分线 48h 响应：电力咨询 021-50896336 · 石化/矿山咨询 021-50898122 · info@keyva.cn，在线询价表单与意向分类服务。">
+<link rel="stylesheet" href="../assets/styles.css">
 </head>
 <body>
 <div class="topbar"><div class="wrap"><span>电力咨询 021-50896336 · 石化/矿山咨询 021-50898122</span><span>info@keyva.cn</span></div></div>
 <header><div class="wrap"><nav>
-  <a class="logo" href="index.html"><span class="mark">KEYVA</span><span><b>KEYVA</b><small>关键阀门 核心价值</small></span></a>
+  <a class="logo" href="../index.html"><span class="mark">KEYVA</span><span><b>KEYVA</b><small>关键阀门 核心价值</small></span></a>
   <div class="menu" id="menu">
-<a class="" href="index.html">首页</a>
-<a class="" href="industries/index.html">行业</a>
-<a class="" href="products/index.html">产品</a>
-<a class="" href="solutions/index.html">解决方案</a>
-<a class="" href="tools/index.html">工具</a>
-<a class="" href="cases/index.html">案例</a>
-<a class="" href="company/index.html">公司</a>
-<a class="on" href="contact/index.html">联系</a>
+<a class="" href="../index.html">首页</a>
+<a class="" href="../industries/index.html">行业</a>
+<a class="" href="../products/index.html">产品</a>
+<a class="" href="../solutions/index.html">解决方案</a>
+<a class="" href="../tools/index.html">工具</a>
+<a class="" href="../cases/index.html">案例</a>
+<a class="" href="../company/index.html">公司</a>
+<a class="on" href="../contact/index.html">联系</a>
   </div>
   <div class="hd-cta">
-    <a class="lang" href="index.html" title="English version — 即将上线">EN</a>
-    <a class="cta" href="contact/index.html">在线询价</a>
+    <a class="lang" href="../index.html" title="English version — 即将上线">EN</a>
+    <a class="cta" href="../contact/index.html">在线询价</a>
     <button class="menu-toggle" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
   </div>
 </nav></div></header>
-<main>按意图分流，四条路径直进不同旅程</main>
+<main>
+<div class="wrap">
+  <div class="breadcrumb"><a href="../index.html">首页</a> / 联系</div>
+</div>
+<div class="hero">
+  <div class="valve"></div>
+  <div class="wrap">
+    <h1>联系我们</h1>
+    <h2>按行业分线 · 48h 响应</h2>
+    <p>电力咨询 021-50896336 · 石化/矿山咨询 021-50898122 · info@keyva.cn</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="h-sec"><span class="k">Intent</span><h2>告诉我们您需要什么</h2></div>
+    <div class="intent-grid">
+      <div class="intent-card">
+        <span class="ic">📋</span>
+        <h3>询价 Quote</h3>
+        <p>提交规格参数，48h 内收到选型建议与报价</p>
+      </div>
+      <div class="intent-card">
+        <span class="ic">📄</span>
+        <h3>资料下载 Download</h3>
+        <p>图纸 / CAD / 白皮书 / 案例 PDF，留资后开放</p>
+      </div>
+      <div class="intent-card">
+        <span class="ic">🔧</span>
+        <h3>服务请求 Service</h3>
+        <p>备件、维修、技术支持，48h SLA</p>
+      </div>
+      <div class="intent-card">
+        <span class="ic">📞</span>
+        <h3>其他咨询 Other</h3>
+        <p>招聘、合作、媒体等</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="feat">
+  <div class="wrap">
+    <div class="h-sec"><span class="k">Enquiry</span><h2>在线询价</h2></div>
+    <form class="panel on" style="max-width:720px;margin:0 auto;" action="#" method="post">
+      <div class="field">
+        <label for="f-name">姓名 *</label>
+        <input type="text" id="f-name" placeholder="请输入姓名" required>
+      </div>
+      <div class="field">
+        <label for="f-company">公司 *</label>
+        <input type="text" id="f-company" placeholder="请输入公司名称" required>
+      </div>
+      <div class="field">
+        <label for="f-phone">电话 *</label>
+        <input type="tel" id="f-phone" placeholder="请输入联系电话" required>
+      </div>
+      <div class="field">
+        <label for="f-email">邮箱</label>
+        <input type="email" id="f-email" placeholder="请输入邮箱（选填）">
+      </div>
+      <div class="field">
+        <label for="f-intent">意向类型 *</label>
+        <select id="f-intent" required>
+          <option>询价 Quote</option>
+          <option>资料下载 Download</option>
+          <option>服务请求 Service</option>
+          <option>其他咨询 Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="f-detail">详细描述</label>
+        <textarea id="f-detail" rows="4" placeholder="请描述工况、规格、数量、交期等"></textarea>
+      </div>
+      <p style="color:#64748B;font-size:13px;margin-bottom:20px;">提交后工程团队 48 小时内响应。电力行业请拨 021-50896336，石化/矿山行业请拨 021-50898122。</p>
+      <button type="submit" class="btn btn-o">提交询盘</button>
+    </form>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="h-sec"><span class="k">Locations</span><h2>纽约 · 伯明翰 · 上海</h2></div>
+    <div class="fgrid">
+      <div class="fcard">
+        <div class="ic">📍</div>
+        <h3>纽约 OSSC</h3>
+        <p>北美总部，服务电力与石化客户。</p>
+      </div>
+      <div class="fcard">
+        <div class="ic">📍</div>
+        <h3>伯明翰 OSSC</h3>
+        <p>欧洲总部，服务欧洲电力与工业客户。</p>
+      </div>
+      <div class="fcard">
+        <div class="ic">📍</div>
+        <h3>上海 OSSC</h3>
+        <p>亚太总部，金川 / 中石化等国内重点客户服务基地。地址：上海市松江区申港路3255号金地威新智造园7栋1层</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>需要快速响应？</h2>
+  <p>按行业分线热线，48 小时内给您选型建议与报价。</p>
+  <a class="btn btn-o" href="../index.html">返回首页</a>
+</div>
+</main>
 <footer><div class="wrap">
   <div class="fgrid2">
     <div><h4>KEYVA · 关键阀门 核心价值</h4><p>专业的阀门制造商，专注于高端金属密封球阀产品及服务。纽约 · 伯明翰 · 上海三大 OSSC 全球布局。</p></div>
     <div><h4>行业</h4><ul>
-      <li><a href="industries/power-boiler.html">电力 / 锅炉</a></li>
-      <li><a href="industries/petrochem-szorb.html">石化 / SZorb</a></li>
-      <li><a href="industries/mining-slurry.html">矿山 / 浆料</a></li>
+      <li><a href="../industries/power-boiler.html">电力 / 锅炉</a></li>
+      <li><a href="../industries/petrochem-szorb.html">石化 / SZorb</a></li>
+      <li><a href="../industries/mining-slurry.html">矿山 / 浆料</a></li>
     </ul></div>
     <div><h4>产品系列</h4><ul>
-      <li><a href="products/sb-std.html">SB-STD 疏水球阀</a></li>
-      <li><a href="products/sb-pcv.html">SB-PCV 动力泄放阀</a></li>
-      <li><a href="products/tb.html">TB 双球阀</a></li>
-      <li><a href="products/rb.html">RB 圆孔球阀</a></li>
-      <li><a href="products/rb-3p.html">RB-3P 三体快关球阀</a></li>
-      <li><a href="products/sb.html">SB 方孔球阀</a></li>
+      <li><a href="../products/sb-std.html">SB-STD 疏水球阀</a></li>
+      <li><a href="../products/sb-pcv.html">SB-PCV 动力泄放阀</a></li>
+      <li><a href="../products/tb.html">TB 双球阀</a></li>
+      <li><a href="../products/rb.html">RB 圆孔球阀</a></li>
+      <li><a href="../products/rb-3p.html">RB-3P 三体快关球阀</a></li>
+      <li><a href="../products/sb.html">SB 方孔球阀</a></li>
     </ul></div>
     <div><h4>服务</h4><ul>
-      <li><a href="solutions/index.html">采购+服务计划</a></li>
-      <li><a href="tools/index.html">选型工具</a></li>
-      <li><a href="order-status/index.html">订单状态查询</a></li>
-      <li><a href="trust/index.html">信任资质</a></li>
-      <li><a href="resources/index.html">资源中心</a></li>
+      <li><a href="../solutions/index.html">采购+服务计划</a></li>
+      <li><a href="../tools/index.html">选型工具</a></li>
+      <li><a href="../order-status/index.html">订单状态查询</a></li>
+      <li><a href="../trust/index.html">信任资质</a></li>
+      <li><a href="../resources/index.html">资源中心</a></li>
     </ul></div>
   </div>
   <div class="compliance">
