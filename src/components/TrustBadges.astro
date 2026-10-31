@@ -14,14 +14,14 @@ const badges = [
 ];
 ---
 
-<div class="trust-badges flex flex-wrap gap-3" role="list" aria-label={lang === "zh" ? "信任角标" : "Trust badges"}>
+<ul class="trust-badges flex flex-wrap gap-3" aria-label={lang === "zh" ? "信任角标" : "Trust badges"}>
   {badges.map((b) => (
-    <span class="trust-badge list-none inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold text-white backdrop-blur">
+    <li class="trust-badge list-none m-0 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold text-white backdrop-blur">
       <span aria-hidden="true">{b.icon}</span>
       {t(lang, b.key)}
-    </span>
+    </li>
   ))}
-</div>
+</ul>
 
 <style>
   .trust-badges {

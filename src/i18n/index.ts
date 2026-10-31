@@ -42,6 +42,11 @@ export function localPath(lang: string, core = "/"): string {
   return c === "/" ? `/${lang}` : `/${lang}${c}`;
 }
 
+/** The other locale (for language-switcher links). */
+export function otherLang(lang: string): string {
+  return lang === "zh" ? "en" : "zh";
+}
+
 /** Root URL of a *target* locale (for the language switcher). */
 export function langRoot(lang: string): string {
   return `/${lang}`;

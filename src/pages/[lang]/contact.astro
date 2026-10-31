@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import InquiryForm from "../../components/InquiryForm.astro";
-import { t, localPath, getLangPaths } from "../../i18n/index";
+import { t, getLangPaths } from "../../i18n/index";
 
 export const getStaticPaths = () =>
   getLangPaths().map(({ lang }) => ({ params: { lang } }));

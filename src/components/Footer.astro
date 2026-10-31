@@ -1,5 +1,5 @@
 ---
-import { t } from "../i18n/index";
+import { t, localPath } from "../i18n/index";
 
 interface Props {
   lang: string;
@@ -8,8 +8,9 @@ interface Props {
 const { lang = "zh" } = Astro.props;
 const isZh = lang === "zh";
 
+// Single source of truth: both locales are URL-prefixed (/zh/... and /en/...).
 function linkFor(core: string) {
-  return isZh ? core : `/en${core === "/" ? "" : core}`;
+  return localPath(lang, core);
 }
 
 const year = new Date().getFullYear();

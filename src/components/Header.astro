@@ -1,7 +1,11 @@
 ---
 /** Site navigation. Mobile menu is a zero-JS <details> pattern (no island
- *  needed) — keeps the a11y story simple and works without JS. */
-import { t } from "../i18n/index";
+ *  needed) — keeps the a11y story simple and works without JS.
+ *
+ * All links are built with the single canonical i18n helper (localPath) so the
+ * Header/Footer can never drift from the content link scheme. Both locales
+ * are URL-prefixed in this build (/zh/... and /en/...), so linkFor() is gone. */
+import { t, localPath, otherLang, langRoot } from "../i18n/index";
 
 interface Props {
   lang: string;
@@ -19,13 +23,12 @@ const coreNav = [
 ];
 
 const isZh = lang === "zh";
-const other = isZh ? "en" : "zh";
-// For the language switch, link to the other locale with the same core path.
-const switchHref = isZh ? "/en/" : "/";
+// Language switch: same core path in the other locale (both are prefixed).
+const switchHref = langRoot(otherLang(lang));
 
 function linkFor(core: string) {
-  // zh (default) is unprefixed; en is /en-prefixed.
-  return isZh ? core : `/en${core === "/" ? "" : core}`;
+  // Single source of truth: localPath prefixes both locales.
+  return localPath(lang, core);
 }
 ---
 
@@ -74,7 +77,7 @@ function linkFor(core: string) {
       ))}
       <li>
         <a href={switchHref} class="text-sm font-medium text-neutral-400 hover:text-brand-primary" aria-label={t(lang, "nav.langsLabel")}>
-          {t(lang, `langs.${other}`)}
+          {t(lang, `langs.${otherLang(lang)}`)}
         </a>
       </li>
     </ul>

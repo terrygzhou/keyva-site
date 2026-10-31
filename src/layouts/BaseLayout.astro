@@ -19,7 +19,8 @@ const {
   lang: langProp,
 } = Astro.props;
 
-const locale = langProp ?? (Astro.locals.lang ?? "zh");
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const locale: string = langProp ?? ((Astro.locals as any).lang ?? "zh");
 const site = {
   name: "KEYVA",
   url: "https://www.keyva.cn",

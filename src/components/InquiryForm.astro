@@ -3,8 +3,12 @@
  * Structured inquiry form. Replaces the four DOCX downloads on the old site
  * with a single smart form that collects dynamic fields per product series and
  * posts directly to /api/contact (no dealer filtering).
+ *
+ * The product <select> options are generated from the products content
+ * collection so they can never drift from the catalogue.
  */
 import { t } from "../i18n/index";
+import { getCollection } from "astro:content";
 
 interface Props {
   lang: string;
@@ -12,15 +16,8 @@ interface Props {
 const { lang = "zh" } = Astro.props;
 const isZh = lang === "zh";
 
-const productOptions = [
-  "SB-STD",
-  "A-STD",
-  "SB-PCV / RB-PCV",
-  "TB",
-  "RB",
-  "RB-3P",
-  "SB",
-];
+const products = await getCollection("products");
+const productOptions = products.map((p) => p.data.series).sort();
 ---
 
 <form
@@ -81,6 +78,15 @@ const productOptions = [
     <textarea name="notes" rows="2" class="input" maxlength="2000"></textarea>
   </label>
 
+  <!-- Honeypot: visually hidden, ignored by real users; bots that fill every
+       field will trigger a silent 200 ack on the server. -->
+  <div class="hidden" aria-hidden="true">
+    <label>
+      <span>Website</span>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" />
+    </label>
+  </div>
+
   <button type="submit" class="btn-primary mt-6 w-full sm:w-auto">{isZh ? "提交询价" : "Submit enquiry"}</button>
 
   <!-- Status region updated by the tiny inline script below -->
@@ -91,7 +97,7 @@ const productOptions = [
   // Zero-island fetch: enhance the static form with an AJAX submit so the user
   // gets inline confirmation without a full reload. Falls back to a normal
   // POST if JS is unavailable (the form still has action + method).
-  document.querySelectorAll("form[data-inquiry]").forEach((form) => {
+  document.querySelectorAll<HTMLFormElement>("form[data-inquiry]").forEach((form) => {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const status = form.querySelector("[data-status]");
@@ -105,16 +111,16 @@ const productOptions = [
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         });
-        const json = await res.json();
+        const json = await res.json().catch(() => null);
         if (status) {
           status.classList.remove("hidden");
-          status.textContent = json.ok
+          status.textContent = json && json.ok
             ? "✓ " + (document.documentElement.lang === "zh"
                 ? "询价已提交，我们将在 2 个工作日内与您联系。"
                 : "Enquiry submitted. We'll respond within 2 business days.")
-            : "⚠ " + (json.error || "Please try again.");
+            : "⚠ " + ((json && json.error) || "Please try again.");
         }
-        if (json.ok) form.reset();
+        if (json && json.ok) form.reset();
       } catch {
         if (status) {
           status.classList.remove("hidden");
