@@ -4,19 +4,29 @@ Goal: reach the local keyva-site test server (static Astro build on
 `0.0.0.0:8765` via `.deploy/serve.cjs`) at `keva-test.eywalink.org` so the
 owner can verify the site on a fixed test hostname.
 
-## How
+## Status: LIVE
 
-The `eywalink.org` zone is managed in Cloudflare and the box runs a persistent
-`cloudflared` named tunnel (tunnel id in `~/.cloudflared/config.yml`, running
-as the `cloudflared` system service). The Cloudflare API token pulled from
-OpenBao (`secret/cloudflare/api_token`, `CF` field) carries
-`Worker Scripts:Write` but **no** `Zone DNS` / `Account Settings:Edit`
-scoping, and `worker_subdomain` / `custom_domain` APIs 404 for this account
-plan, so the binding is done through the tunnel rather than a zone record or
-custom worker domain:
+`https://keva-test.eywalink.org/` → 200, full KEYVA site.
+
+## How it works
+
+### 1. DNS record
+
+A CNAME record was created via the Cloudflare API (token from OpenBao
+`secret/cloudflare/dns-eywalink`, `value` field — a DNS-scoped token that
+sees the `eywalink.org` zone):
+
+```
+keva-test.eywalink.org CNAME → a58c16f6-1645-4901-8657-76ab944eb4c6.cfargotunnel.com
+```
+
+This follows the same pattern as `console`, `control`, `umami`, `track`,
+`matomo`, `probe`, `www`, and the tunnel's own CNAME on the zone.
+
+### 2. Cloudflare tunnel ingress
 
 `~/.cloudflared/config.yml` ingress (inserted before the `http_status:404`
-catch-all):
+catch-all, same file used by the `cloudflared-tunnel` systemd service):
 
 ```yaml
   # 2026-10-31 KEYV-9: local keyva-site test server (0.0.0.0:8765) behind
@@ -25,12 +35,30 @@ catch-all):
     service: http://127.0.0.1:8765
 ```
 
-## Prerequisites / remaining external steps
+### 3. Local static server
 
-- `keva-test.eywalink.org` must resolve to the tunnel's edge. Either point a
-  CNAME record `keva-test` at the tunnel ingress (DNS record) or use a
-  Cloudflare proxy record — this needs the zone's DNS API, which the OpenBao
-  `cloudflare/api_token` token does not cover. Until then the local server
-  works at `http://127.0.0.1:8765` and `curl -H "Host: keva-test.eywalink.org"`.
-- The static build is served by `node .deploy/serve.cjs` (port 8765, overridable
-  with `KEYVA_PORT`). Logs: `.deploy/serve.log`.
+`node .deploy/serve.cjs` (port 8765, overridable with `KEYVA_PORT`).
+Logs: `.deploy/serve.log`. Serves the Astro `dist/` build with clean URL
+routing (`/` → en, `/zh/…` → zh).
+
+## OpenBao secrets used
+
+| Secret path                   | Policy used         | Purpose                          |
+|-------------------------------|--------------------|----------------------------------|
+| `cloudflare/dns-eywalink`     | `cloudflare-agent` | DNS-scoped CF token (zone CRUD)  |
+| `cloudflare/account-id`       | `cloudflare-admin` | CF account id (reference)        |
+
+Mint short-lived agent tokens via:
+```
+~/.openbao/bin/mint-agent-token cloudflare-agent 1h keyv9-software-engineer
+BAO_ADDR=http://127.0.0.1:8200 BAO_TOKEN=s.xxx \
+    python3 ~/.openbao/bin/openbao_agent_fetch.py cloudflare/dns-eywalink value
+```
+
+## Restart procedure
+
+If the `cloudflared-tunnel` service needs a restart after a config change:
+```
+sudo kill -9 $(pgrep -f "cloudflared.*config.yml")
+# systemd Restart=always brings it back up within ~5s
+```
