@@ -1,0 +1,52 @@
+---
+series: "SB-STD"
+nameZh: "方孔直通疏水球阀"
+nameEn: "Square-Bore Straight Drain Ball Valve"
+descZh: "直通球阀、一体锻造式阀体、方孔球体和阀座，专为锅炉疏水工况设计。"
+descEn: "Straight-flow, integrated forged body, square-bore ball and seat — engineered for boiler drain applications."
+size: '3/4"–6" · 600 / 1500 / 3100 / 4500 Lb'
+materials: ["A105", "F22", "F91", "F92", "F316"]
+connection: "对焊（BW）"
+featuresZh:
+  - "直通球阀"
+  - "一体锻造式阀体"
+  - "方孔球体和阀座"
+  - "球座 Inconel 718 合金抗热冲击"
+  - "热融合喷涂 + 纳米喷涂阀门内件"
+  - "压力式自密封"
+  - "双阀杆防窜出设计"
+  - "填料活载抗温变"
+  - "人性化站立式阀体"
+featuresEn:
+  - "Straight-flow ball valve"
+  - "Integrated forged body"
+  - "Square-bore ball and seat"
+  - "Inconel 718 seat alloy for thermal-shock resistance"
+  - "Thermal-fusion + nano-sprayed internal components"
+  - "Pressure-actuated self-sealing"
+  - "Dual-stem anti-pull-out design"
+  - "Live-load packing for temperature compensation"
+  - "Ergonomic upright body"
+appsZh:
+  - "锅炉疏水 / 排汽"
+  - "定排、连排、汽包排汽"
+  - "过热器排汽"
+  - "疏水吹灰器隔离"
+  - "减温水隔离"
+  - "汽机疏水 / 主蒸汽疏水"
+  - "抽汽疏水 / 再热疏水"
+  - "一次汽 / 二次汽 / 油气 / EH 油隔离"
+  - "压力测控"
+appsEn:
+  - "Boiler drain / steam venting"
+  - "Periodic and continuous blowdown, drum venting"
+  - "Superheater venting"
+  - "Soil-blower isolation"
+  - "Attemperator water isolation"
+  - "Turbine drain / main steam drain"
+  - "Extraction steam / reheat drain"
+  - "Primary / secondary steam / gas / EH-oil isolation"
+  - "Pressure measurement and control"
+image: "/products/sb-std.png"
+asmeCertified: false
+isPCV: false

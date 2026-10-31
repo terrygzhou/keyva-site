@@ -1,18 +1,38 @@
 import { defineCollection, z } from "astro:content";
 
-const services = defineCollection({
+const products = defineCollection({
   type: "content",
   schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    /** One-paragraph pitch shown on cards. */
-    pitch: z.string(),
-    /** Capabilities listed on the service detail page. */
-    capabilities: z.array(z.string()),
-    outcomes: z.array(z.string()).default([]),
-    /** Internal URL of a matching case study, if any. */
-    relatedCaseStudy: z.string().optional(),
-    draft: z.boolean().default(false),
+    /** Short label, e.g. "SB-STD" */
+    series: z.string(),
+    /** Chinese product name */
+    nameZh: z.string(),
+    /** English product name */
+    nameEn: z.string(),
+    /** One-line description (ZH) */
+    descZh: z.string(),
+    /** One-line description (EN) */
+    descEn: z.string(),
+    /** Spec range, e.g. '3/4"–6" · 600/1500/3100/4500 Lb' */
+    size: z.string(),
+    /** Materials offered */
+    materials: z.array(z.string()),
+    /** Connection types */
+    connection: z.string(),
+    /** Key technical features (ZH) */
+    featuresZh: z.array(z.string()),
+    /** Key technical features (EN) */
+    featuresEn: z.array(z.string()),
+    /** Application scenarios (ZH) */
+    appsZh: z.array(z.string()),
+    /** Application scenarios (EN) */
+    appsEn: z.array(z.string()),
+    /** Image path under public/ (optional) */
+    image: z.string().optional(),
+    /** Whether ASME certified */
+    asmeCertified: z.boolean().default(false),
+    /** Whether it's a PCV (power-actuated control valve) */
+    isPCV: z.boolean().default(false),
   }),
 });
 
@@ -26,9 +46,10 @@ const caseStudyCollection = defineCollection({
     challenge: z.string(),
     approach: z.string(),
     results: z.array(z.string()),
-    /** e.g. ["Cloud","Security"] */
+    /** e.g. ["Power","SZorb"] */
     tags: z.array(z.string()).default([]),
-    date: z.coerce.date(),
+    /** Year the project was completed */
+    year: z.coerce.number(),
     draft: z.boolean().default(false),
   }),
 });
@@ -39,10 +60,14 @@ const insights = defineCollection({
     title: z.string(),
     description: z.string(),
     date: z.coerce.date(),
-    author: z.string().default("KeyVA"),
+    author: z.string().default("KEYVA"),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
   }),
 });
 
-export const collections = { services, "case-studies": caseStudyCollection, insights };
+export const collections = {
+  products,
+  "case-studies": caseStudyCollection,
+  insights,
+};

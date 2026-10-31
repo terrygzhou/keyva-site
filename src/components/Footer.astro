@@ -1,8 +1,25 @@
 ---
+import { t } from "../i18n/index";
+
+interface Props {
+  lang: string;
+}
+
+const { lang = "zh" } = Astro.props;
+const isZh = lang === "zh";
+
+function linkFor(core: string) {
+  return isZh ? core : `/en${core === "/" ? "" : core}`;
+}
+
 const year = new Date().getFullYear();
 const contact = {
-  email: "info@keyvatech.com", // TODO: confirm the live enquiry address
-  linkedin: "https://www.linkedin.com/company/keyvatech",
+  address: isZh
+    ? "上海市松江区申港路 3255 号金地威新智造园 7 栋 1 层"
+    : "1F, Bldg 7, Jindi Weixing Smart Park, 3255 Shengang Rd, Songjiang, Shanghai",
+  email: "info@keyva.cn",
+  phonePower: isZh ? "电力咨询：021-50896336" : "Power: 021-50896336",
+  phoneChem: isZh ? "石化/矿山：021-50898122" : "Petrochemical / Mining: 021-50898122",
 };
 ---
 
@@ -10,34 +27,35 @@ const contact = {
   <div class="container-site py-10">
     <div class="grid gap-8 md:grid-cols-3">
       <div>
-        <p class="font-display text-xl font-bold text-white">KeyVA</p>
+        <p class="font-display text-xl font-bold text-white">KEYVA</p>
         <p class="mt-3 text-sm leading-relaxed text-neutral-400">
-          IT automation and business transformation consulting.
+          {isZh
+            ? "专业高端金属密封球阀制造商，专注电力、石化、矿山苛刻工况阀门解决方案。"
+            : "Specialist manufacturer of high-end metal-seated ball valves for power, petrochemical, and mining critical-service applications."}
         </p>
       </div>
       <nav aria-label="Footer">
-        <p class="text-sm font-semibold uppercase tracking-wider text-neutral-500">Navigate</p>
+        <p class="text-sm font-semibold uppercase tracking-wider text-neutral-500">{t(lang, "footer.quickLinks")}</p>
         <ul class="mt-3 space-y-2 text-sm">
-          <li><a href="/services/" class="hover:text-white hover:underline">Services</a></li>
-          <li><a href="/case-studies/" class="hover:text-white hover:underline">Case Studies</a></li>
-          <li><a href="/insights/" class="hover:text-white hover:underline">Insights</a></li>
-          <li><a href="/contact/" class="hover:text-white hover:underline">Contact</a></li>
+          <li><a href={linkFor("/about/")} class="hover:text-white hover:underline">{t(lang, "nav.about")}</a></li>
+          <li><a href={linkFor("/products/")} class="hover:text-white hover:underline">{t(lang, "nav.products")}</a></li>
+          <li><a href={linkFor("/case-studies/")} class="hover:text-white hover:underline">{t(lang, "nav.caseStudies")}</a></li>
+          <li><a href={linkFor("/contact/")} class="hover:text-white hover:underline">{t(lang, "nav.contact")}</a></li>
         </ul>
       </nav>
       <div>
-        <p class="text-sm font-semibold uppercase tracking-wider text-neutral-500">Contact</p>
+        <p class="text-sm font-semibold uppercase tracking-wider text-neutral-500">{t(lang, "footer.contactLabel")}</p>
         <ul class="mt-3 space-y-2 text-sm">
+          <li>{contact.address}</li>
           <li><a href={`mailto:${contact.email}`} class="hover:text-white hover:underline">{contact.email}</a></li>
-          <li>
-            <a href={contact.linkedin} rel="noopener" class="hover:text-white hover:underline">
-              LinkedIn
-            </a>
-          </li>
+          <li>{contact.phonePower}</li>
+          <li>{contact.phoneChem}</li>
         </ul>
+        <p class="mt-4 text-xs text-neutral-600">沪ICP备2025153087号-1</p>
       </div>
     </div>
     <p class="mt-10 border-t border-neutral-800 pt-6 text-xs text-neutral-500">
-      &copy; {year} KeyVA. All rights reserved.
+      &copy; {year} KEYVA. {isZh ? "保留所有权利。" : "All rights reserved."}
     </p>
   </div>
 </footer>

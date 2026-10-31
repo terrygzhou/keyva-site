@@ -1,0 +1,178 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TrustBadges from "../../components/TrustBadges.astro";
+import { t, localPath, getLangPaths } from "../../i18n/index";
+
+export const getStaticPaths = () =>
+  getLangPaths().map(({ lang }) => ({ params: { lang } }));
+
+const { lang } = Astro.params;
+const isZh = lang === "zh";
+
+// Timeline: year label + detail. Data mirrors keyva.cn crawl + strategy docs.
+const milestones: Array<{ year: string; detail: string }> = [
+  { year: "1992", detail: isZh ? "美国 KEYVA 公司于纽约成立" : "US KEYVA founded in New York" },
+  { year: "2008", detail: isZh ? "OSSC 上海成立" : "Shanghai OSSC established" },
+  { year: "2014", detail: isZh ? "建立休斯敦工厂" : "Houston factory established" },
+  { year: "2018", detail: isZh ? "阀门零件制造工艺研发，支持中石化 SZorb 装置阀门国产化" : "Valve component process R&D supporting Sinopec SZorb valve localisation" },
+  { year: "2018–2020", detail: isZh ? "成为中石化 SZorb 装置阀门框架品牌" : "Framework brand for Sinopec SZorb unit valves" },
+  { year: "2019–2023", detail: isZh ? "成为国能 E 购阀门框架品牌" : "Framework brand for State Energy E-Procurement valves" },
+  { year: "2024", detail: isZh ? "战略升级，专注电力石化关键苛刻阀门；获 TS 许可证书与 ISO 9001" : "Strategic upgrade to critical power/petrochemical valves; TS licence and ISO 9001 obtained" },
+  { year: "2025", detail: isZh ? "获上海高新技术企业称号（20+ 专利）；获欧盟 CE 安全认证" : "Named Shanghai High-Tech Enterprise (20+ patents); EU CE safety certification obtained" },
+  { year: "2026", detail: isZh ? "锅炉 PCV 阀获得 ASME 认证" : "Boiler PCV valve obtained ASME certification" },
+];
+
+const culture: Array<[string, string]> = [
+  ["Innovation", isZh ? "不断创新，研发新技术，提供更优质的阀门解决方案" : "Continuously innovate to deliver better valve solutions"],
+  ["Quality", isZh ? "严格质量管理体系，确保产品质量稳定可靠" : "Rigorous quality systems ensuring stable, reliable products"],
+  ["Customer", isZh ? "以客户需求为中心，提供个性化阀门解决方案" : "Customer-centric, personalised valve solutions"],
+  ["Social", isZh ? "注重环保，推动行业可持续发展" : "Committed to sustainability and industry advancement"],
+];
+
+const certs = [
+  { code: "TS 2024", label: isZh ? "TS 许可证书" : "TS Licence" },
+  { code: "ISO 9001 2024", label: isZh ? "ISO 9001 质量管理体系" : "ISO 9001 QMS" },
+  { code: "CE 2025", label: isZh ? "欧盟 CE 安全认证" : "EU CE Safety" },
+  { code: "ASME 2026", label: isZh ? "ASME 锅炉 PCV 认证" : "ASME Boiler PCV" },
+];
+
+const partners = [
+  isZh ? "上海汽轮机厂" : "Shanghai Turbine Works",
+  isZh ? "东方汽轮机厂" : "Dongfang Turbine Works",
+  isZh ? "哈尔滨汽轮机厂" : "Harbin Turbine Works",
+  isZh ? "哈尔滨锅炉厂" : "Harbin Boiler Works",
+];
+---
+
+<BaseLayout lang={lang} title={isZh ? "关于我们" : "About"}
+  description={
+    isZh
+      ? "了解 KEYVA 的发展历程、全球 OSSC 布局与企业文化。1992 创立于纽约，三大 OSSC：纽约、伯明翰、上海。"
+      : "KEYVA's history, global OSSC footprint and culture. Founded 1992 in New York; three OSSC sites: New York, Birmingham, Shanghai."
+  }>
+  <section class="bg-neutral-100 py-14">
+    <div class="container-site">
+      <h1 class="font-display text-4xl font-extrabold text-brand-primary">{t(lang, "about.title")}</h1>
+      <p class="mt-3 max-w-2xl text-lg text-neutral-600">{t(lang, "about.subtitle")}</p>
+      <TrustBadges lang={lang} />
+    </div>
+  </section>
+
+  <!-- Global footprint -->
+  <section class="py-16" aria-labelledby="footprint-heading">
+    <div class="container-site">
+      <h2 id="footprint-heading" class="font-display text-2xl font-bold text-brand-primary">
+        {isZh ? "全球布局" : "Global footprint"}
+      </h2>
+      <p class="mt-4 leading-relaxed text-neutral-600">
+        {isZh
+          ? "KEYVA 在全球拥有三大 OSSC（一站式服务中心）布局：纽约、伯明翰、上海，并设有休斯敦工厂，为全球客户提供专业的阀门解决方案。OSSC 上海成立于 2008 年。"
+          : "KEYVA operates three OSSC (One-Station Service Center) sites — New York, Birmingham and Shanghai — with a Houston factory, delivering valve solutions globally. The Shanghai OSSC was established in 2008."}
+      </p>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          { city: isZh ? "纽约" : "New York", role: isZh ? "总部 · OSSC" : "HQ · OSSC" },
+          { city: isZh ? "伯明翰" : "Birmingham", role: isZh ? "OSSC" : "OSSC" },
+          { city: isZh ? "上海" : "Shanghai", role: isZh ? "OSSC · 智造基地" : "OSSC · Smart manufacturing" },
+          { city: isZh ? "休斯敦" : "Houston", role: isZh ? "工厂" : "Factory" },
+        ].map((s) => (
+          <div class="rounded-xl border border-neutral-200 bg-white p-5 shadow-sm">
+            <p class="font-display text-xl font-bold text-brand-primary">{s.city}</p>
+            <p class="mt-1 text-sm text-neutral-500">{s.role}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="bg-neutral-100 py-16" aria-labelledby="timeline-heading">
+    <div class="container-site">
+      <h2 id="timeline-heading" class="font-display text-2xl font-bold text-brand-primary">
+        {isZh ? "发展历程" : "Milestones"}
+      </h2>
+      <ol class="relative mt-8 space-y-6 border-l-2 border-neutral-200 pl-8">
+        {milestones.map((m) => (
+          <li class="relative">
+            <span class="absolute -left-[41px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-primary text-[10px] font-bold text-white">
+              •
+            </span>
+            <p class="font-display text-lg font-bold text-brand-primary">{m.year}</p>
+            <p class="mt-1 text-neutral-600">{m.detail}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Culture -->
+  <section class="py-16" aria-labelledby="culture-heading">
+    <div class="container-site">
+      <h2 id="culture-heading" class="font-display text-2xl font-bold text-brand-primary">
+        {isZh ? "企业文化" : "Our culture"}
+      </h2>
+      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {culture.map(([k, v]) => (
+          <div class="rounded-xl border border-neutral-200 bg-white p-5 shadow-sm">
+            <h3 class="font-display text-lg font-semibold text-brand-primary">{k}</h3>
+            <p class="mt-2 text-sm text-neutral-600">{v}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications wall -->
+  <section class="bg-brand-primary py-16 text-white" aria-labelledby="certs-heading">
+    <div class="container-site">
+      <h2 id="certs-heading" class="font-display text-2xl font-bold">
+        {isZh ? "认证资质" : "Certifications"}
+      </h2>
+      <p class="mt-3 max-w-2xl text-neutral-300">
+        {isZh
+          ? "四证齐全，构成对外信任三角。认证口径统一：ASME 为锅炉 PCV 认证（2026），不可夸大为全品类。"
+          : "Four certifications form the external trust triangle. Note: ASME covers the boiler PCV (2026), not the full product range."}
+      </p>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {certs.map((c) => (
+          <div class="rounded-xl border border-white/15 bg-white/10 p-5 backdrop-blur">
+            <p class="font-display text-xl font-bold text-brand-highlight">{c.code}</p>
+            <p class="mt-1 text-sm text-neutral-200">{c.label}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mt-6 text-sm text-neutral-300">
+        {isZh ? "20+ 项专利 · 上海高新技术企业" : "20+ patents · Shanghai High-Tech Enterprise"}
+      </p>
+    </div>
+  </section>
+
+  <!-- Partners -->
+  <section class="py-16" aria-labelledby="partners-heading">
+    <div class="container-site">
+      <h2 id="partners-heading" class="font-display text-2xl font-bold text-brand-primary">
+        {isZh ? "配套厂商" : "Partner works"}
+      </h2>
+      <p class="mt-3 max-w-2xl text-neutral-600">
+        {isZh
+          ? "与多家国内知名动力设备厂配套协同。"
+          : "Coordinating with several leading domestic power-equipment works."}
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        {partners.map((p) => (
+          <span class="rounded-lg border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-600 shadow-sm">{p}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-neutral-100 py-14 text-center">
+    <div class="container-site">
+      <h2 class="font-display text-2xl font-bold text-brand-primary">
+        {isZh ? "对我们感兴趣？直接询价" : "Interested? Request a quote"}
+      </h2>
+      <a href={localPath(lang, "/contact/")} class="btn-primary mt-6">{t(lang, "nav.inquiry")}</a>
+    </div>
+  </section>
+</BaseLayout>

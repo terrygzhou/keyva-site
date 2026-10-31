@@ -1,18 +1,41 @@
 ---
 /** Site navigation. Mobile menu is a zero-JS <details> pattern (no island
  *  needed) — keeps the a11y story simple and works without JS. */
-const nav = [
-  { href: "/services/", label: "Services" },
-  { href: "/case-studies/", label: "Case Studies" },
-  { href: "/insights/", label: "Insights" },
-  { href: "/about/", label: "About" },
+import { t } from "../i18n/index";
+
+interface Props {
+  lang: string;
+}
+
+const { lang = "zh" } = Astro.props;
+
+// Core pathnames (no locale prefix). Each locale renders its own prefixed links.
+const coreNav = [
+  { core: "/", key: "home" },
+  { core: "/about/", key: "about" },
+  { core: "/products/", key: "products" },
+  { core: "/case-studies/", key: "caseStudies" },
+  { core: "/contact/", key: "contact" },
 ];
+
+const isZh = lang === "zh";
+const other = isZh ? "en" : "zh";
+// For the language switch, link to the other locale with the same core path.
+const switchHref = isZh ? "/en/" : "/";
+
+function linkFor(core: string) {
+  // zh (default) is unprefixed; en is /en-prefixed.
+  return isZh ? core : `/en${core === "/" ? "" : core}`;
+}
 ---
 
-<header class="border-b border-neutral-200 bg-white">
+<header class="sticky top-0 z-40 border-b border-neutral-200 bg-white/95 backdrop-blur">
   <nav aria-label="Primary" class="container-site flex items-center justify-between py-4">
-    <a href="/" class="font-display text-2xl font-bold text-brand-primary">
-      KeyVA
+    <a href={linkFor("/")} class="flex items-baseline gap-2 font-display text-2xl font-extrabold text-brand-primary">
+      KEYVA
+      <span class="hidden text-xs font-semibold uppercase tracking-widest text-neutral-400 sm:inline">
+        {isZh ? "关键阀门 · 核心价值" : "Key Valve · Key Value"}
+      </span>
     </a>
 
     <!-- Mobile toggle -->
@@ -24,15 +47,17 @@ const nav = [
       </summary>
       <div class="absolute left-4 right-4 top-14 rounded-lg border border-neutral-200 bg-white p-4 shadow-lg">
         <ul class="flex flex-col gap-2">
-          {nav.map((item) => (
+          {coreNav.map((item) => (
             <li>
-              <a href={item.href} class="block rounded-md px-3 py-2 font-medium text-neutral-700 hover:bg-neutral-100">
-                {item.label}
+              <a href={linkFor(item.core)} class="block rounded-md px-3 py-2 font-medium text-neutral-700 hover:bg-neutral-100">
+                {t(lang, `nav.${item.key}`)}
               </a>
             </li>
           ))}
           <li>
-            <a href="/contact/" class="btn-primary block text-center">Get in touch</a>
+            <a href={linkFor("/contact/")} class="btn-primary block text-center">
+              {t(lang, "nav.inquiry")}
+            </a>
           </li>
         </ul>
       </div>
@@ -40,14 +65,21 @@ const nav = [
 
     <!-- Desktop nav -->
     <ul class="hidden items-center gap-6 md:flex">
-      {nav.map((item) => (
+      {coreNav.map((item) => (
         <li>
-          <a href={item.href} class="font-medium text-neutral-600 hover:text-brand-primary">
-            {item.label}
+          <a href={linkFor(item.core)} class="font-medium text-neutral-600 hover:text-brand-primary">
+            {t(lang, `nav.${item.key}`)}
           </a>
         </li>
       ))}
+      <li>
+        <a href={switchHref} class="text-sm font-medium text-neutral-400 hover:text-brand-primary" aria-label={t(lang, "nav.langsLabel")}>
+          {t(lang, `langs.${other}`)}
+        </a>
+      </li>
     </ul>
-    <a href="/contact/" class="btn-primary hidden md:inline-flex">Get in touch</a>
+    <a href={linkFor("/contact/")} class="btn-primary hidden md:inline-flex">
+      {t(lang, "nav.inquiry")}
+    </a>
   </nav>
 </header>

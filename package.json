@@ -1,7 +1,7 @@
 {
   "name": "keyva-site",
   "version": "0.1.0",
-  "description": "KeyVA — IT consulting & business transformation. Static marketing site.",
+  "description": "KeyVA — high-end metal-seated ball valves. Bilingual static marketing site.",
   "type": "module",
   "scripts": {
     "dev": "astro dev",

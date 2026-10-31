@@ -1,0 +1,136 @@
+---
+/**
+ * Structured inquiry form. Replaces the four DOCX downloads on the old site
+ * with a single smart form that collects dynamic fields per product series and
+ * posts directly to /api/contact (no dealer filtering).
+ */
+import { t } from "../i18n/index";
+
+interface Props {
+  lang: string;
+}
+const { lang = "zh" } = Astro.props;
+const isZh = lang === "zh";
+
+const productOptions = [
+  "SB-STD",
+  "A-STD",
+  "SB-PCV / RB-PCV",
+  "TB",
+  "RB",
+  "RB-3P",
+  "SB",
+];
+---
+
+<form
+  class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm md:p-8"
+  data-inquiry
+  method="post"
+  action="/api/contact/"
+  aria-label={t(lang, "contact.formTitle")}>
+  <h2 class="font-display text-xl font-bold text-brand-primary">{t(lang, "contact.formTitle")}</h2>
+  <p class="mt-1 text-sm text-neutral-500">{t(lang, "contact.formNote")}</p>
+
+  <div class="mt-6 grid gap-4 sm:grid-cols-2">
+    <label class="block text-sm">
+      <span class="font-medium text-neutral-700">{isZh ? "姓名" : "Name"} *</span>
+      <input name="name" type="text" required class="input" maxlength="200" />
+    </label>
+    <label class="block text-sm">
+      <span class="font-medium text-neutral-700">{isZh ? "公司名称" : "Company"} *</span>
+      <input name="company" type="text" required class="input" maxlength="200" />
+    </label>
+    <label class="block text-sm">
+      <span class="font-medium text-neutral-700">{isZh ? "电子邮箱" : "Email"} *</span>
+      <input name="email" type="email" required class="input" maxlength="320" />
+    </label>
+    <label class="block text-sm">
+      <span class="font-medium text-neutral-700">{isZh ? "联系电话" : "Phone"} *</span>
+      <input name="phone" type="tel" required class="input" maxlength="80" />
+    </label>
+    <label class="block text-sm">
+      <span class="font-medium text-neutral-700">{isZh ? "产品系列" : "Product series"} *</span>
+      <select name="product" required class="input">
+        <option value="" disabled selected>{isZh ? "请选择产品系列" : "Select a series"}</option>
+        {productOptions.map((o) => <option value={o}>{o}</option>)}
+      </select>
+    </label>
+    <label class="block text-sm">
+      <span class="font-medium text-neutral-700">{isZh ? "规格参数（口径 / 压力等级）" : "Specs (size / pressure class)"}</span>
+      <input name="spec" type="text" class="input" placeholder='例：4" / 1500Lb' />
+    </label>
+    <label class="block text-sm">
+      <span class="font-medium text-neutral-700">{isZh ? "数量" : "Quantity"}</span>
+      <input name="quantity" type="text" class="input" maxlength="40" />
+    </label>
+    <label class="block text-sm">
+      <span class="font-medium text-neutral-700">{isZh ? "材料 / 认证要求" : "Material / certification req."}</span>
+      <input name="material" type="text" class="input" placeholder="F91 / ASME" maxlength="120" />
+    </label>
+  </div>
+
+  <label class="mt-4 block text-sm">
+    <span class="font-medium text-neutral-700">{isZh ? "应用场景 / 工况" : "Application / service condition"} *</span>
+    <textarea name="application" required rows="3" class="input" maxlength="1000"
+      placeholder={isZh ? "例：锅炉疏水、定排连排、SZorb 装置等" : "e.g. boiler drain, blowdown, SZorb unit"}></textarea>
+  </label>
+
+  <label class="mt-4 block text-sm">
+    <span class="font-medium text-neutral-700">{isZh ? "交期 / 其他需求" : "Lead time / other notes"}</span>
+    <textarea name="notes" rows="2" class="input" maxlength="2000"></textarea>
+  </label>
+
+  <button type="submit" class="btn-primary mt-6 w-full sm:w-auto">{isZh ? "提交询价" : "Submit enquiry"}</button>
+
+  <!-- Status region updated by the tiny inline script below -->
+  <p class="form-status mt-4 hidden" data-status role="status" aria-live="polite"></p>
+</form>
+
+<script>
+  // Zero-island fetch: enhance the static form with an AJAX submit so the user
+  // gets inline confirmation without a full reload. Falls back to a normal
+  // POST if JS is unavailable (the form still has action + method).
+  document.querySelectorAll("form[data-inquiry]").forEach((form) => {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const status = form.querySelector("[data-status]");
+      const data = new FormData(form);
+      const payload: Record<string, string> = {};
+      data.forEach((v, k) => (payload[k] = String(v)));
+      payload.source = location.pathname;
+      try {
+        const res = await fetch("/api/contact/", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const json = await res.json();
+        if (status) {
+          status.classList.remove("hidden");
+          status.textContent = json.ok
+            ? "✓ " + (document.documentElement.lang === "zh"
+                ? "询价已提交，我们将在 2 个工作日内与您联系。"
+                : "Enquiry submitted. We'll respond within 2 business days.")
+            : "⚠ " + (json.error || "Please try again.");
+        }
+        if (json.ok) form.reset();
+      } catch {
+        if (status) {
+          status.classList.remove("hidden");
+          status.textContent = "⚠ " +
+            (document.documentElement.lang === "zh"
+              ? "提交失败，请直接发送邮件至 info@keyva.cn"
+              : "Submission failed; email info@keyva.cn instead.");
+        }
+      }
+    });
+  });
+</script>
+
+<style>
+  .input {
+    @apply mt-1 w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-800 shadow-sm
+      focus:border-brand-accent focus:outline-none focus:ring-2 focus:ring-brand-accent/40;
+  }
+</style>

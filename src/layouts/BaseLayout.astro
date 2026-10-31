@@ -7,37 +7,43 @@ interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  /** Explicit locale for `[lang]` pages; falls back to middleware-set locals. */
+  lang?: string;
 }
 
 const {
-  title = "KeyVA — IT Consulting & Business Transformation",
-  description = "KeyVA — IT consulting and business transformation. Take the pain out of complexity and ship transformation that lasts.",
+  title = "KEYVA — 关键阀门 核心价值",
+  description =
+    "KEYVA — 高端金属密封球阀制造商。在最严苛的工况下，比同行多撑 3–5 年。电力、石化、矿山关键阀门解决方案。",
   ogImage = "/og-default.jpg",
+  lang: langProp,
 } = Astro.props;
 
+const locale = langProp ?? (Astro.locals.lang ?? "zh");
 const site = {
-  name: "KeyVA",
-  url: "https://www.keyvatech.com",
+  name: "KEYVA",
+  url: "https://www.keyva.cn",
   orgJsonLd: JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "KeyVA",
-    url: "https://www.keyvatech.com",
-    description: "IT consulting and business transformation.",
-    sameAs: ["https://www.linkedin.com/company/keyvatech"],
+    name: "KEYVA",
+    legalName: "KEYVA Control Inc.",
+    url: "https://www.keyva.cn",
+    description:
+      locale === "zh"
+        ? "KEYVA 是专业的高端金属密封球阀制造商，专注电力、石化、矿山苛刻工况阀门解决方案。"
+        : "KEYVA is a specialist manufacturer of high-end metal-seated ball valves for power, petrochemical, and mining critical-service applications.",
+    foundingDate: "1992",
+    sameAs: [],
   }),
 };
 
 const fullTitle = title === site.name ? site.name : `${title} | ${site.name}`;
 const canonical = `${site.url}${Astro.url.pathname === "/" ? "" : Astro.url.pathname}`;
-
-// Analytics: enabled on the production host only (same guard pattern as
-// eywalink-site). Replace the Umami website id when the KeyVA property is
-// created; until then nothing is tracked and the site still works.
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -62,29 +68,26 @@ const canonical = `${site.url}${Astro.url.pathname === "/" ? "" : Astro.url.path
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
 
     <!-- Structured data -->
     <script is:inline type="application/ld+json">{site.orgJsonLd}</script>
 
-    <!-- Analytics (guarded to production host; see BaseLayout note) -->
+    <!-- Analytics (production host guard) -->
     <script is:inline>
-      if (["keyvatech.com", "www.keyvatech.com"].includes(window.location.hostname)) {
+      if (["keyva.cn", "www.keyva.cn"].includes(window.location.hostname)) {
         window.dataLayer = window.dataLayer || [];
-        // TODO: drop in the KeyVA analytics snippet (Umami/Matomo) once the
-        // property exists; keep this guard so dev/preview hosts stay silent.
       }
     </script>
   </head>
   <body class="min-h-screen font-sans">
-    <!-- a11y: skip link is the first focusable element -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    <Header />
+    <Header lang={locale} />
     <main id="main-content">
       <slot />
     </main>
-    <Footer />
+    <Footer lang={locale} />
   </body>
 </html>

@@ -1,0 +1,130 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { t, localPath, getLangPaths } from "../../i18n/index";
+
+export const getStaticPaths = () =>
+  getLangPaths().map(({ lang }) => ({ params: { lang } }));
+
+const { lang } = Astro.params;
+const isZh = lang === "zh";
+
+// Only relationships that are documented in the crawl/strategy docs are shown.
+// Running-year figures are intentionally omitted pending client authorisation
+// (see KEY-30 risk note: 客户 logo 与运行年限数据需书面授权).
+const frameworks: Array<{
+  period: string;
+  client: string;
+  scope: string;
+  products: string;
+}> = [
+  {
+    period: "2018–2020",
+    client: isZh ? "中石化 SZorb 装置" : "Sinopec SZorb units",
+    scope: isZh
+      ? "阀门框架品牌；支持阀门国产化"
+      : "Valve framework brand; supported valve localisation",
+    products: isZh
+      ? "SB 方孔球阀（石化 SZorb / 浆料）"
+      : "SB square-bore valves (petrochemical SZorb / slurry)",
+  },
+  {
+    period: "2019–2023",
+    client: isZh ? "国能 E 购" : "State Energy E-Procurement",
+    scope: isZh ? "阀门框架品牌" : "Valve framework brand",
+    products: isZh
+      ? "电力疏水 / 隔离球阀"
+      : "Power drain / isolation ball valves",
+  },
+];
+
+const clientWall = [
+  "中石化 Sinopec",
+  "华能 Huaneng",
+  "国能 State Energy",
+  "京能 Capital Energy",
+  "大唐 Datang",
+  "华电 Huadian",
+  "国电 GD Power",
+  "华润 CR Power",
+  "粤电 Yuedian",
+  "金川 Jinchuan",
+];
+---
+
+<BaseLayout lang={lang} title={isZh ? "客户案例" : "Case Studies"}
+  description={
+    isZh
+      ? "KEYVA 客户案例：中石化 SZorb 框架、国能框架等，及受中国最大能源集团信赖。"
+      : "KEYVA case studies: Sinopec SZorb and State Energy frameworks, trusted by China's largest energy groups."
+  }>
+  <section class="bg-neutral-100 py-14">
+    <div class="container-site">
+      <h1 class="font-display text-4xl font-extrabold text-brand-primary">
+        {isZh ? "客户案例" : "Case studies"}
+      </h1>
+      <p class="mt-3 max-w-2xl text-lg text-neutral-600">
+        {isZh
+          ? "以框架品牌身份服务中国最大能源集团。具体运行年限数据以客户书面授权为准，未授权前不展示具体数字。"
+          : "Serving China's largest energy groups as a framework brand. Specific operating-year figures are held until written client authorisation."}
+      </p>
+    </div>
+  </section>
+
+  <!-- Documented framework relationships -->
+  <section class="py-14">
+    <div class="container-site">
+      <h2 class="font-display text-2xl font-bold text-brand-primary">
+        {isZh ? "框架品牌合作" : "Framework relationships"}
+      </h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        {frameworks.map((f) => (
+          <article class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+            <p class="text-sm font-semibold uppercase tracking-wider text-brand-accent">{f.period}</p>
+            <h3 class="mt-2 font-display text-xl font-bold text-brand-primary">{f.client}</h3>
+            <dl class="mt-4 space-y-3 text-sm">
+              <div>
+                <dt class="font-semibold text-neutral-500">{isZh ? "合作形式" : "Engagement"}</dt>
+                <dd class="mt-1 text-neutral-700">{f.scope}</dd>
+              </div>
+              <div>
+                <dt class="font-semibold text-neutral-500">{isZh ? "供应产品" : "Products"}</dt>
+                <dd class="mt-1 text-neutral-700">{f.products}</dd>
+              </div>
+            </dl>
+          </article>
+        ))}
+      </div>
+      <p class="mt-6 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
+        {isZh
+          ? "注：按 KEY-30 合规要求，客户 logo 与具体运行年限数据需取得客户书面授权后方可公开展示；当前页面仅呈现已公开的框架合作关系。"
+          : "Note: per KEY-30 compliance, client logos and specific operating-year data require written authorisation before public display; this page shows only the documented framework relationships."}
+      </p>
+    </div>
+  </section>
+
+  <!-- Client logo wall -->
+  <section class="bg-neutral-100 py-14 text-center">
+    <div class="container-site">
+      <h2 class="font-display text-2xl font-bold text-brand-primary">
+        {isZh ? "服务客户" : "Clients served"}
+      </h2>
+      <div class="mx-auto mt-8 flex max-w-4xl flex-wrap items-center justify-center gap-3">
+        {clientWall.map((c) => (
+          <span class="rounded-lg border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-500 shadow-sm">
+            {c}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-14 text-center">
+    <div class="container-site">
+      <h2 class="font-display text-2xl font-bold text-brand-primary">
+        {isZh ? "需要为您的项目询价？" : "Need a quote for your project?"}
+      </h2>
+      <a href={localPath(lang, "/contact/")} class="btn-primary mt-6">{t(lang, "nav.inquiry")}</a>
+    </div>
+  </section>
+</BaseLayout>

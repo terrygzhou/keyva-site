@@ -1,0 +1,77 @@
+{
+  "site": {
+    "name": "KEYVA",
+    "tagline": "Metal-sealed ball valves that outlast competitors by 3–5 years in the most demanding service conditions",
+    "sub": "Key Valve · Key Value",
+    "orgDescription": "KEYVA is a specialist manufacturer of high-end metal-seated ball valves for power, petrochemical, and mining critical-service applications."
+  },
+  "trust": {
+    "founded": "Founded 1992 · New York",
+    "ossC": "Three global OSSC sites: New York · Birmingham · Shanghai",
+    "asme": "ASME Boiler PCV Certified 2026",
+    "patents": "20+ Patents · Shanghai Hi-Tech Enterprise"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "products": "Products",
+    "caseStudies": "Case Studies",
+    "contact": "Contact",
+    "inquiry": "Request a Quote",
+    "langsLabel": "Switch language"
+  },
+  "hero": {
+    "badge": "Key Valve · Key Value",
+    "title": "Outlasts competitors by 3–5 years in the harshest conditions",
+    "subtitle": "KEYVA builds high-pressure metal-seated ball valves for power, petrochemical, and mining critical-service applications — durability as the core differentiator, trusted by China's largest energy groups.",
+    "ctaPrimary": "Request a Quote",
+    "ctaSecondary": "View Products"
+  },
+  "about": {
+    "title": "About KEYVA",
+    "subtitle": "Our history, global footprint, and culture",
+    "milestones": {
+      "2008": "Shanghai OSSC established",
+      "2014": "Houston factory established",
+      "2018": "Valve manufacturing R&D supporting domestic valve localisation for Sinopec SZorb units",
+      "2018–2020": "Framework brand for Sinopec SZorb unit valves",
+      "2019–2023": "Framework brand for State Energy (Goneng) E-Procurement valves",
+      "2024": "Strategic upgrade; obtained TS licence and ISO 9001 certification",
+      "2025": "Named Shanghai High-Tech Enterprise (20+ patents); obtained EU CE safety certification",
+      "2026": "Boiler PCV valve obtained ASME certification"
+    },
+    "culture": {
+      "innovation": "Continuously innovate to deliver better valve solutions",
+      "quality": "Rigorous quality systems ensuring stable, reliable products",
+      "customer": "Customer-centric, personalised valve solutions",
+      "social": "Committed to sustainability and industry advancement"
+    }
+  },
+  "products": {
+    "title": "Products",
+    "subtitle": "KEYVA's proprietary square-bore metal-seated ball valves — an innovation in anti-erosion and ultra-wear-resistant service.",
+    "std": "Design standards: ASTM / ASME · 150 Lb – 4500 Lb",
+    "inquiry": "Request a Quote"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We'll provide professional valve solutions",
+    "address": "1F, Bldg 7, Jindi Weixing Smart Park, 3255 Shengang Rd, Songjiang, Shanghai",
+    "email": "info@keyva.cn",
+    "phonePower": "Power enquiries: 021-50896336",
+    "phoneChem": "Petrochemical / Mining: 021-50898122",
+    "formTitle": "Request a Quote",
+    "formNote": "We respond within 2 business days."
+  },
+  "footer": {
+    "quickLinks": "Quick Links",
+    "contactLabel": "Contact",
+    "certsLabel": "Certifications",
+    "rights": "© 2026 KEYVA. All rights reserved.",
+    "icp": "沪ICP备2025153087号-1"
+  },
+  "langs": {
+    "zh": "中文",
+    "en": "English"
+  }
+}

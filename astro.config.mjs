@@ -2,10 +2,17 @@ import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import cloudflare from "@astrojs/cloudflare";
 
-// Replace with the live domain when it is final (drives sitemap/OG absolute URLs).
+// Drives sitemap/OG absolute URLs.
 export default defineConfig({
-  site: "https://www.keyvatech.com",
+  site: "https://www.keyva.cn",
   output: "hybrid",
   integrations: [tailwind()],
   adapter: cloudflare(),
+  i18n: {
+    defaultLocale: "zh",
+    locales: ["zh", "en"],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
 });
