@@ -78,6 +78,11 @@ const clientLogos = [
       <p class="mt-6 max-w-2xl text-lg leading-relaxed text-neutral-200">
         {t(lang, "hero.subtitle")}
       </p>
+      {isZh && (
+        <p class="mt-4 max-w-2xl text-base leading-relaxed text-neutral-300">
+          在最严苛的工况下，比同行多撑 3–5 年，更少停机，更长使用寿命，更高长期价值。
+        </p>
+      )}
       <div class="mt-10 flex flex-wrap gap-4">
         <a href={localPath(lang, "/contact/")} class="btn-primary">{t(lang, "hero.ctaPrimary")}</a>
         <a href={localPath(lang, "/products/")} class="btn-outline border-white/30 text-white hover:bg-white hover:text-brand-primary">
@@ -116,11 +121,11 @@ const clientLogos = [
     <div class="container-site grid items-center gap-10 lg:grid-cols-2">
       <div>
         <h2 id="durability-heading" class="font-display text-3xl font-bold text-brand-primary">
-          {isZh ? "使用寿命多撑 3–5 年，综合成本更低" : "Service life outlasts by 3–5 years, lower total cost"}
+          {isZh ? "更长使用寿命，优化全生命周期成本" : "Service life outlasts by 3–5 years, lower total cost"}
         </h2>
         <p class="mt-4 leading-relaxed text-neutral-600">
           {isZh
-            ? "KEYVA 的核心差异是耐久性能。在苛刻工况下，我们的金属密封球阀使用寿命比同行多撑 3–5 年——意味着少换 2–3 次、更少的非计划停机与更低的总拥有成本。"
+            ? "KEYVA 的核心差异是耐久性能。在最苛刻工况下，我们的金属密封球阀使用寿命比同行多撑 3–5 年——意味着少换 2–3 次、更少的非计划停机与更低的总拥有成本。"
             : "KEYVA's core difference is durability. In demanding service, the service life of our metal-seated ball valves outlasts competitors by 3–5 years — meaning fewer replacements, less unplanned downtime, and a lower total cost of ownership."}
         </p>
         <a href={localPath(lang, "/contact/")} class="mt-6 inline-block font-semibold text-brand-accent hover:underline">
@@ -192,7 +197,7 @@ const clientLogos = [
   <section class="py-16" aria-labelledby="clients-heading">
     <div class="container-site text-center">
       <h2 id="clients-heading" class="font-display text-2xl font-bold text-brand-primary">
-        {isZh ? "受中国最大能源集团信赖" : "Trusted by China's largest energy groups"}
+        {isZh ? "受中国各领域客户信任" : "Trusted by China's largest energy groups"}
       </h2>
       <div class="mx-auto mt-8 flex max-w-4xl flex-wrap items-center justify-center gap-3">
         {clientLogos.map((c) => (
@@ -230,11 +235,11 @@ const clientLogos = [
   <section class="bg-brand-primary py-16 text-white">
     <div class="container-site text-center">
       <h2 class="font-display text-3xl font-bold">
-        {isZh ? "直接询价，直达 KEYVA 技术团队" : "Request a quote, direct to KEYVA engineering"}
+        {isZh ? "与 KEYVA 技术团队直接沟通" : "Request a quote, direct to KEYVA engineering"}
       </h2>
       <p class="mx-auto mt-4 max-w-prose text-neutral-300">
         {isZh
-          ? "结构化在线询盘，按产品系列动态出字段，直进 CRM，不经代理过滤。"
+          ? "提交工况参数，获取针对性的技术建议与报价"
           : "Structured online enquiry with dynamic fields per product series, straight into our CRM — no dealer filtering."}
       </p>
       <a href={localPath(lang, "/contact/")} class="btn-primary mt-8 bg-white text-brand-primary hover:bg-brand-highlight">
